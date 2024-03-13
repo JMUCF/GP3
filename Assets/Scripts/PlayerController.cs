@@ -41,6 +41,13 @@ public class PlayerController : MonoBehaviour
 
         // Apply force based on the new movement direction
         rb.AddForce(movement * speed);
+
+        // Rotate the player to match the camera's forward direction (optional)
+        if (movement != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
     }
 
     private void OnMove(InputValue movementValue)
