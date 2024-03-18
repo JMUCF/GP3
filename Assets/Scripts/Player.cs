@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     public GameObject playerAlien;
     private bool form;
     public ParticleSystem shapeshiftSmoke;
+    private int energyLevel = 0;
+    public TMP_Text energyText;
     
     void Awake()
     {
@@ -22,20 +25,26 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        energyText.text = "Energy Level: " + energyLevel.ToString();
     }
 
     void Shapeshift()
     {
-        if(form == false)
+        if (form == false) // If the player is currently in human form
         {
-            Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
-            playerHuman.SetActive(false);
-            playerAlien.SetActive(true);
-            form = true;
+            // Transform into an alien only if the energy level is greater than 0
+            if (energyLevel >= 3)
+            {
+                Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
+                playerHuman.SetActive(false);
+                playerAlien.SetActive(true);
+                form = true;
+                energyLevel-= 3; // Decrease energy level after transformation
+            }
         }
-        else
+        else // If the player is currently in alien form
         {
+            // Transform back into a human without any restriction
             Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
             playerHuman.SetActive(true);
             playerAlien.SetActive(false);
@@ -51,5 +60,11 @@ public class Player : MonoBehaviour
     void OnDisable()
     {
         controls.Player.Disable();
+    }
+
+    public void AddEnergy(int amount)
+    {
+        energyLevel += amount;
+        energyLevel = Mathf.Clamp(energyLevel, 0, 3);
     }
 }
