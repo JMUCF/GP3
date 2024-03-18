@@ -6,9 +6,8 @@ using TMPro;
 public class Telekinesis : MonoBehaviour
 {
     public Transform playerCamera; // Reference to the player's camera
-    public Transform player;
-    public float pickupDistance = 15f; // Maximum distance to pick up the object
-    public float pickupAngle = 15f; // Angle within which the player can pick up objects
+    public Transform playerLookAt;
+    public float pickupDistance = 10f; // Maximum distance to pick up the object
     public KeyCode pickupKey = KeyCode.E; // Key to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
     private bool isLookingAtObject = false; // Flag to track if the player is looking at a pickable object
@@ -17,7 +16,8 @@ public class Telekinesis : MonoBehaviour
     {
         // Check if the player is looking at an object to pick up
         RaycastHit hit;
-        if (Physics.Raycast(player.position, player.forward, out hit, pickupDistance))
+        Vector3 direction = playerCamera.forward * 10f; // Calculate direction from player camera
+        if (Physics.Raycast(playerLookAt.position, direction, out hit, pickupDistance))
         {
             Debug.Log("Hit object: " + hit.collider.gameObject.name);
             Debug.Log("Hit distance: " + hit.distance);
@@ -47,7 +47,8 @@ public class Telekinesis : MonoBehaviour
     {
         if (objectToPickup != null)
         {
-            Destroy(objectToPickup);
+            Debug.Log("Looking at pickup object");
+            //Destroy(objectToPickup);
         }
         else
         {
@@ -57,14 +58,9 @@ public class Telekinesis : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawRay(player.position, player.forward);
-
-        // Draws a 5 unit long red line in front of the object
+        // Draws a 15 unit long red line in front of the object
         Gizmos.color = Color.red;
-        Vector3 direction = playerCamera.forward * 15; // Calculate direction from player camera
-        direction.y += 1.5f;
-        direction.z -= 1.5f;
-        Gizmos.DrawRay(playerCamera.position, direction);
+        Vector3 direction = playerCamera.forward * 10f; // Calculate direction from player camera
+        Gizmos.DrawRay(playerLookAt.position, direction);
     }
 }

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
-    public float speed = 1;
+    public float speed = 1f;
 
     private Transform mainCameraTransform;
 
@@ -43,11 +43,7 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movement * speed);
 
         // Rotate the player to match the camera's forward direction (optional)
-        if (movement != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-        }
+        transform.rotation = Quaternion.LookRotation(forward);
     }
 
     private void OnMove(InputValue movementValue)
