@@ -28,15 +28,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""ea1dee4a-4617-4304-8001-74aea32ebff2"",
             ""actions"": [
                 {
-                    ""name"": ""Buttons"",
-                    ""type"": ""Button"",
-                    ""id"": ""dcc6a79b-93c2-4a5e-b050-6d19909eadba"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""86d12f17-7c80-4672-800c-d3fc8cc60ff4"",
@@ -83,28 +74,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""da63e300-3675-4cfe-9777-15ead6573b9b"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox Controller"",
-                    ""action"": ""Buttons"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dc8da32d-a784-4ffa-b4d8-4f040e449f30"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Xbox Controller"",
-                    ""action"": ""Buttons"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""81d876f6-7b96-40b6-99dd-0785d204b497"",
@@ -245,7 +214,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Buttons = m_Player.FindAction("Buttons", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Shapeshift = m_Player.FindAction("Shapeshift", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
@@ -312,7 +280,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Buttons;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Shapeshift;
     private readonly InputAction m_Player_Interact;
@@ -322,7 +289,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Buttons => m_Wrapper.m_Player_Buttons;
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Shapeshift => m_Wrapper.m_Player_Shapeshift;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
@@ -337,9 +303,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @Buttons.started += instance.OnButtons;
-            @Buttons.performed += instance.OnButtons;
-            @Buttons.canceled += instance.OnButtons;
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -359,9 +322,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @Buttons.started -= instance.OnButtons;
-            @Buttons.performed -= instance.OnButtons;
-            @Buttons.canceled -= instance.OnButtons;
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
@@ -414,7 +374,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnButtons(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnShapeshift(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);

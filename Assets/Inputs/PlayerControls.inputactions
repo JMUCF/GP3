@@ -6,15 +6,6 @@
             "id": "ea1dee4a-4617-4304-8001-74aea32ebff2",
             "actions": [
                 {
-                    "name": "Buttons",
-                    "type": "Button",
-                    "id": "dcc6a79b-93c2-4a5e-b050-6d19909eadba",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Move",
                     "type": "Value",
                     "id": "86d12f17-7c80-4672-800c-d3fc8cc60ff4",
@@ -61,28 +52,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "da63e300-3675-4cfe-9777-15ead6573b9b",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Xbox Controller",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dc8da32d-a784-4ffa-b4d8-4f040e449f30",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Xbox Controller",
-                    "action": "Buttons",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "81d876f6-7b96-40b6-99dd-0785d204b497",
