@@ -13,7 +13,9 @@ public class Telekinesis : MonoBehaviour
     public float pickupDistance = 10f; // Maximum distance to pick up the object
     public KeyCode pickupKey = KeyCode.E; // Key to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
+    private GameObject objectCarried;
     private bool isLookingAtObject = false; // Flag to track if the player is looking at a pickable object
+    private bool isCarryingObject = false; // Flag to track if the player is currently carrying an object
     private RaycastHit hit;
 
     void Awake()
@@ -29,13 +31,8 @@ public class Telekinesis : MonoBehaviour
         Vector3 direction = playerCamera.forward * 10f; // Calculate direction from player camera
         if (Physics.Raycast(playerLookAt.position, direction, out hit, pickupDistance))
         {
-            //Debug.Log("Hit object: " + hit.collider.gameObject.name);
-            //Debug.Log("Hit distance: " + hit.distance);
-
-            // Check if the object to pick up matches the specific prefab and is within pickup angle
             if (hit.collider.CompareTag("pickup"))
             {
-                // Store the object to pick up
                 objectToPickup = hit.collider.gameObject;
                 isLookingAtObject = true;
             }
@@ -44,11 +41,27 @@ public class Telekinesis : MonoBehaviour
         }
         else
             isLookingAtObject = false;
+
+        /*if(isCarryingObject)
+        {
+            Debug.Log("We are carrying something");
+            float distance = Vector3.Distance (playerLookAt.transform.position, objectCarried.transform.position);
+            if(distance > 2)
+                objectCarried.transform.position = hit.point;
+        }*/
+
+        if (isCarryingObject)
+        {
+            float distance = Vector3.Distance (playerLookAt.transform.position, objectCarried.transform.position);
+            Debug.Log("Distance between player and object: " + distance);
+            Vector3 newPosition = playerLookAt.position + playerLookAt.forward * distance;
+            objectCarried.transform.position = newPosition;
+        }
     }
 
     public void OnInteract()
     {
-        if (isLookingAtObject)
+        if (isLookingAtObject && !isCarryingObject)
         {
             Pickup();
         }
@@ -58,7 +71,9 @@ public class Telekinesis : MonoBehaviour
     {
         if (objectToPickup != null)
         {
-            objectToPickup.transform.position = hit.point;
+            objectCarried = objectToPickup;
+            objectCarried.transform.position = hit.point;
+            isCarryingObject = true;
         }
         else
         {
@@ -68,12 +83,17 @@ public class Telekinesis : MonoBehaviour
 
     public void LaunchObject()
     {
-        
+        if (isCarryingObject)
+        {
+            // Reset the object's position and release it
+            objectToPickup.transform.position = objectToPickup.GetComponent<Transform>().position;
+            isCarryingObject = false;
+            objectToPickup = null; // Clear the reference to the object
+        }
     }
 
     void OnDrawGizmos()
     {
-        // Draws a 15 unit long red line in front of the object
         Gizmos.color = Color.red;
         Vector3 direction = playerCamera.forward * 10f; // Calculate direction from player camera
         Gizmos.DrawRay(playerLookAt.position, direction);
