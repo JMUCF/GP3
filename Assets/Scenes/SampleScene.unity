@@ -2252,6 +2252,7 @@ GameObject:
   - component: {fileID: 2044562731}
   - component: {fileID: 2044562733}
   - component: {fileID: 2044562734}
+  - component: {fileID: 2044562735}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2377,8 +2378,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1268113064}
   playerLookAt: {fileID: 540820410}
-  player: {fileID: 2044562729}
   pickupDistance: 3
+--- !u!114 &2044562735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044562728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e1074ec50a0f844b20623a211fa8af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 7
 --- !u!1 &2105826687
 GameObject:
   m_ObjectHideFlags: 0

@@ -71,6 +71,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""37b08bfd-7ee7-4bb9-b269-8ba16faba6f0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -194,6 +203,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Launch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ee09dbc-8e77-4a14-8e24-060b3b1b0438"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Xbox Controller"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -230,6 +250,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Shapeshift = m_Player.FindAction("Shapeshift", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Launch = m_Player.FindAction("Launch", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -296,6 +317,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Shapeshift;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Launch;
+    private readonly InputAction m_Player_Jump;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -305,6 +327,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Shapeshift => m_Wrapper.m_Player_Shapeshift;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Launch => m_Wrapper.m_Player_Launch;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -329,6 +352,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Launch.started += instance.OnLaunch;
             @Launch.performed += instance.OnLaunch;
             @Launch.canceled += instance.OnLaunch;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -348,6 +374,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Launch.started -= instance.OnLaunch;
             @Launch.performed -= instance.OnLaunch;
             @Launch.canceled -= instance.OnLaunch;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -390,5 +419,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnShapeshift(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnLaunch(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

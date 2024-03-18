@@ -32,7 +32,7 @@ public class JumpFunction : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Check if the player is grounded when they collide with something
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("pickup"))
         {
             isGrounded = true;
         }
