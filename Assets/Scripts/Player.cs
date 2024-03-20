@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,8 +11,9 @@ public class Player : MonoBehaviour
     public GameObject playerAlien;
     private bool form;
     public ParticleSystem shapeshiftSmoke;
-    private int energyLevel = 0;
-    public TMP_Text energyText;
+    public float maxEnergy = 3;
+    public float currentEnergy;
+    public Slider energyBar;
     
     void Awake()
     {
@@ -20,12 +21,14 @@ public class Player : MonoBehaviour
         //Cursor.visible = false; only enable this once we have a crosshair or something
         controls = new PlayerControls();
         controls.Player.Shapeshift.performed += ctx => Shapeshift();
+        currentEnergy = 0;
+        UpdateEnergyUI();
     }
 
     // Update is called once per frame
     void Update()
     {
-        energyText.text = "Energy Level: " + energyLevel.ToString();
+        
     }
 
     void Shapeshift()
@@ -33,13 +36,13 @@ public class Player : MonoBehaviour
         if (form == false) // If the player is currently in human form
         {
             // Transform into an alien only if the energy level is greater than 0
-            if (energyLevel >= 3)
+            if (currentEnergy >= 3)
             {
                 Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
                 playerHuman.SetActive(false);
                 playerAlien.SetActive(true);
                 form = true;
-                energyLevel-= 3; // Decrease energy level after transformation
+                currentEnergy -= 3; // Decrease energy level after transformation
             }
         }
         else // If the player is currently in alien form
@@ -50,6 +53,8 @@ public class Player : MonoBehaviour
             playerAlien.SetActive(false);
             form = false;
         }
+
+        UpdateEnergyUI();
     }
 
     void OnEnable()
@@ -64,7 +69,13 @@ public class Player : MonoBehaviour
 
     public void AddEnergy(int amount)
     {
-        energyLevel += amount;
-        energyLevel = Mathf.Clamp(energyLevel, 0, 3);
+        currentEnergy += amount;
+        currentEnergy = Mathf.Clamp(currentEnergy, 0, 3);
+        UpdateEnergyUI();
+    }
+
+    void UpdateEnergyUI()
+    {
+        energyBar.value = currentEnergy;
     }
 }
