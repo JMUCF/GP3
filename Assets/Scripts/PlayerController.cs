@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     public float speed = 1f;
+    private float maxSpeed = 10f;
 
     private Transform mainCameraTransform;
 
@@ -40,6 +41,10 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = (forward * movementY + right * movementX).normalized;
 
         // Apply force based on the new movement direction
+        if(rb.velocity.magnitude > maxSpeed ) //clamps the player speed to maxSpeed if trying to move faster than maxSpeed
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        }
         rb.AddForce(movement * speed);
 
         // Rotate the player to match the camera's forward direction (optional)
