@@ -5,10 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private PlayerControls playerControls;
     private Rigidbody rb;
     private float movementX;
     private float movementY;
     public float speed = 1f;
+    private float maxSpeed = 10f;
+
+    public float jumpHeight = 5f;
+    private bool isGrounded = true; // Track if the player is grounded
 
     private Transform mainCameraTransform;
 
@@ -17,8 +22,19 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
+        playerControls = new PlayerControls();
+        playerControls.Player.Jump.performed += ctx => OnJump(); // Subscribe to the jump input event
         // Assuming the camera is a child of the player, otherwise, find the camera in the scene.
         mainCameraTransform = Camera.main.transform;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Check if the player is grounded when they collide with something
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("pickup"))
+        {
+            isGrounded = true;
+        }
     }
 
     // Update is called once per frame
@@ -40,10 +56,23 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = (forward * movementY + right * movementX).normalized;
 
         // Apply force based on the new movement direction
+        if(rb.velocity.magnitude > maxSpeed ) //clamps the player speed to maxSpeed if trying to move faster than maxSpeed
+        {
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        }
         rb.AddForce(movement * speed);
 
         // Rotate the player to match the camera's forward direction (optional)
         transform.rotation = Quaternion.LookRotation(forward);
+    }
+    private void OnJump()
+    {
+        // Check if the player is grounded before allowing them to jump
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            isGrounded = false; // Player is no longer grounded after jumping
+        }
     }
 
     private void OnMove(InputValue movementValue)
@@ -52,5 +81,16 @@ public class PlayerController : MonoBehaviour
 
         movementX = movementVector.x;
         movementY = movementVector.y;
+    }
+    void OnEnable()
+    {
+        if (playerControls != null)
+            playerControls.Enable();
+    }
+
+    void OnDisable()
+    {
+        if (playerControls != null)
+            playerControls.Disable();
     }
 }
