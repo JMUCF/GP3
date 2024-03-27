@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
+
     void OnEnable()
     {
         controls.Player.Enable();
