@@ -6,8 +6,7 @@ using UnityEngine.AI;
 
 public class MovingPlatform : MonoBehaviour
 {
-
-    public Transform target;
+    public Transform player;
     public int speed;
     public Transform[] waypoints;
     private int currentWaypointIndex;
@@ -16,21 +15,37 @@ public class MovingPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 5;
+        speed = 4;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (target.transform.position == waypoints[0].transform.position)
+        if (transform.position == waypoints[0].transform.position)
         {
             check = false;
         }
-        else if (target.transform.position == waypoints[1].transform.position)
+        else if (transform.position == waypoints[1].transform.position)
         {
             check = true;
         }
 
-        target.transform.position = Vector3.MoveTowards(target.transform.position, check ? waypoints[0].transform.position : waypoints[1].transform.position, Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, check ? waypoints[0].transform.position : waypoints[1].transform.position, Time.deltaTime * speed);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.transform.SetParent(null);
+        }
     }
 }

@@ -43,7 +43,6 @@ public class Telekinesis : MonoBehaviour
         {
             float distance = Vector3.Distance(playerLookAt.position, objectCarried.transform.position);
             Vector3 newPosition = playerLookAt.position + playerCamera.forward * pickupDistance;
-            //newPosition.y = initialObjectPosition.y;
             objectCarried.transform.position = newPosition;
         }
     }
