@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Check if the player is grounded when they collide with something
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("pickup"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("pickup") || collision.gameObject.CompareTag("MovingPlatform"))
         {
             isGrounded = true;
         }
@@ -56,15 +56,19 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = (forward * movementY + right * movementX).normalized;
 
         // Apply force based on the new movement direction
-        if(rb.velocity.magnitude > maxSpeed ) //clamps the player speed to maxSpeed if trying to move faster than maxSpeed
+        if(rb.velocity.magnitude > maxSpeed) //clamps the player speed to maxSpeed if trying to move faster than maxSpeed               ########### edit this if to make an exception when player is falling. just checking if grounded is true doesn't work since player can just bunny hop really fast. need to only allow movespeed to exceed clamp on the y-axis.
         {
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         }
-        rb.AddForce(movement * speed);
+        else
+        {
+            rb.AddForce(movement * speed);
+        }
 
         // Rotate the player to match the camera's forward direction (optional)
         transform.rotation = Quaternion.LookRotation(forward);
     }
+
     private void OnJump()
     {
         // Check if the player is grounded before allowing them to jump
