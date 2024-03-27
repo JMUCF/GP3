@@ -6,8 +6,9 @@ public class Telekinesis : MonoBehaviour
 
     public Transform playerCamera; // Reference to the player's camera
     public Transform playerLookAt;
-    //public Transform player;
-    public float pickupDistance = 10f; // Maximum distance to pick up the object
+    public GameObject laser;
+
+    private float pickupDistance = 4f; // Maximum distance to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
     private GameObject objectCarried;
     private Vector3 initialObjectPosition; // Initial position of the object when picked up
@@ -18,6 +19,7 @@ public class Telekinesis : MonoBehaviour
         controls = new PlayerControls();
         controls.Player.Interact.performed += ctx => OnInteract();
         controls.Player.Launch.performed += ctx => LaunchObject();
+        controls.Player.Shoot.performed += ctx => Shoot();
     }
 
     void Update()
@@ -49,7 +51,7 @@ public class Telekinesis : MonoBehaviour
 
     public void OnInteract()
     {
-        if (objectToPickup != null && objectCarried == null)
+        if (objectToPickup != null)
         {
             Pickup();
         }
@@ -70,6 +72,14 @@ public class Telekinesis : MonoBehaviour
         {
             objectCarried = null;
         }
+    }
+
+    public void Shoot()
+    {
+        Vector3 shootDirection = playerCamera.forward; // Calculate direction from player camera
+
+        GameObject laserInst = Instantiate(laser, new Vector3 (playerLookAt.position.x - .25f, playerLookAt.position.y - .25f, playerLookAt.position.z + .25f), Quaternion.LookRotation(shootDirection));
+        laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
     }
 
     void OnDrawGizmos()

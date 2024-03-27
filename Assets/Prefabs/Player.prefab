@@ -146,7 +146,7 @@ Transform:
   - {fileID: 7069234508388925308}
   - {fileID: 6870189973339313626}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8226395806298563252
 Rigidbody:
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
   playerLookAt: {fileID: 6870189973339313626}
-  pickupDistance: 3
+  laser: {fileID: 6543770950126461909, guid: 7de39c2b017f6d341b4faff03495e5ad, type: 3}
 --- !u!114 &2084162485031174023
 MonoBehaviour:
   m_ObjectHideFlags: 0
