@@ -4,10 +4,13 @@ public class Telekinesis : MonoBehaviour
 {
     PlayerControls controls;
 
+    private int liftWeight;
+    public bool form;
     public Transform playerCamera; // Reference to the player's camera
     public Transform playerLookAt;
-    //public Transform player;
-    public float pickupDistance = 10f; // Maximum distance to pick up the object
+    public GameObject laser;
+
+    private float pickupDistance = 4f; // Maximum distance to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
     private GameObject objectCarried;
     private Vector3 initialObjectPosition; // Initial position of the object when picked up
@@ -15,18 +18,26 @@ public class Telekinesis : MonoBehaviour
 
     void Awake()
     {
+        liftWeight = 1;
         controls = new PlayerControls();
         controls.Player.Interact.performed += ctx => OnInteract();
         controls.Player.Launch.performed += ctx => LaunchObject();
+        controls.Player.Shoot.performed += ctx => Shoot();
     }
 
     void Update()
     {
+        form = gameObject.GetComponent<Player>().form;
+        if (form)
+            liftWeight = 2;
+        else if (!form)
+            liftWeight = 1;
+
         // Check if the player is looking at an object to pick up
         Vector3 direction = playerCamera.forward * pickupDistance; // Calculate direction from player camera
         if (Physics.Raycast(playerLookAt.position, direction, out hit, pickupDistance))
         {
-            if (hit.collider.CompareTag("pickup"))
+            if (hit.collider.CompareTag("pickup") && hit.rigidbody.mass <= liftWeight)
             {
                 objectToPickup = hit.collider.gameObject;
             }
@@ -49,7 +60,7 @@ public class Telekinesis : MonoBehaviour
 
     public void OnInteract()
     {
-        if (objectToPickup != null && objectCarried == null)
+        if (objectToPickup != null)
         {
             Pickup();
         }
@@ -70,6 +81,14 @@ public class Telekinesis : MonoBehaviour
         {
             objectCarried = null;
         }
+    }
+
+    public void Shoot()
+    {
+        Vector3 shootDirection = playerCamera.forward; // Calculate direction from player camera
+
+        GameObject laserInst = Instantiate(laser, new Vector3 (playerLookAt.position.x - .25f, playerLookAt.position.y - .25f, playerLookAt.position.z + .25f), Quaternion.LookRotation(shootDirection));
+        laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
     }
 
     void OnDrawGizmos()

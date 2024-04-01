@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     PlayerControls controls;
     public GameObject playerHuman;
     public GameObject playerAlien;
-    private bool form;
+    public bool form;
     public ParticleSystem shapeshiftSmoke;
     public float maxEnergy = 3;
     public float currentEnergy;
