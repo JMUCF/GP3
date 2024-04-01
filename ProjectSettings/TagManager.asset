@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - MovingPlatform
   - laser
+  - lever
   layers:
   - Default
   - TransparentFX

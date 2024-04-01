@@ -16,6 +16,8 @@ public class Telekinesis : MonoBehaviour
     private Vector3 initialObjectPosition; // Initial position of the object when picked up
     private RaycastHit hit;
 
+    public bool leverFlipped = false;
+
     void Awake()
     {
         liftWeight = 1;
@@ -37,7 +39,7 @@ public class Telekinesis : MonoBehaviour
         Vector3 direction = playerCamera.forward * pickupDistance; // Calculate direction from player camera
         if (Physics.Raycast(playerLookAt.position, direction, out hit, pickupDistance))
         {
-            if (hit.collider.CompareTag("pickup") && hit.rigidbody.mass <= liftWeight)
+            if (hit.collider.CompareTag("pickup") && hit.rigidbody.mass <= liftWeight || hit.collider.CompareTag("lever")) //checks if player is looking at pickup object & is in correct form or if looking at a lever
             {
                 objectToPickup = hit.collider.gameObject;
             }
@@ -68,6 +70,7 @@ public class Telekinesis : MonoBehaviour
 
     public void Pickup()
     {
+        //if(objectToPickup.CompareTag)
         if (objectToPickup != null && objectCarried == null)
         {
             objectCarried = objectToPickup;
