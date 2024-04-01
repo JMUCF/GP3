@@ -4,6 +4,8 @@ public class Telekinesis : MonoBehaviour
 {
     PlayerControls controls;
 
+    private int liftWeight;
+    public bool form;
     public Transform playerCamera; // Reference to the player's camera
     public Transform playerLookAt;
     public GameObject laser;
@@ -16,6 +18,7 @@ public class Telekinesis : MonoBehaviour
 
     void Awake()
     {
+        liftWeight = 1;
         controls = new PlayerControls();
         controls.Player.Interact.performed += ctx => OnInteract();
         controls.Player.Launch.performed += ctx => LaunchObject();
@@ -24,11 +27,17 @@ public class Telekinesis : MonoBehaviour
 
     void Update()
     {
+        form = gameObject.GetComponent<Player>().form;
+        if (form)
+            liftWeight = 2;
+        else if (!form)
+            liftWeight = 1;
+
         // Check if the player is looking at an object to pick up
         Vector3 direction = playerCamera.forward * pickupDistance; // Calculate direction from player camera
         if (Physics.Raycast(playerLookAt.position, direction, out hit, pickupDistance))
         {
-            if (hit.collider.CompareTag("pickup"))
+            if (hit.collider.CompareTag("pickup") && hit.rigidbody.mass <= liftWeight)
             {
                 objectToPickup = hit.collider.gameObject;
             }
