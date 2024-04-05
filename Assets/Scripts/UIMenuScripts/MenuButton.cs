@@ -1,25 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class MenuButton : MonoBehaviour
+public class MenuButtons : MonoBehaviour
 {
-    // The name of the scene to load
-    public string sceneName;
+    // Reference to the UI Button in the inspector
+    public Button switchToMainButton;
 
-    // Method to switch scenes
-    public void SwitchScene()
+    void Start()
     {
-        // Load the specified scene
-        SceneManager.LoadScene(sceneName);
+        // Add a listener to the button so that the SwitchToMain method is called when the button is clicked
+        switchToMainButton.onClick.AddListener(SwitchToMain);
     }
 
-    // Method to switch back to the previous scene
-    public void SwitchBack()
+    void SwitchToMain()
     {
-        // Get the index of the current scene
-        int currentIndex = SceneManager.GetActiveScene().buildIndex;
-
-        // Load the scene with the index before the current one
-        SceneManager.LoadScene(currentIndex - 1);
+        SceneManager.LoadScene("MainMenu");
     }
 }
