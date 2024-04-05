@@ -1,44 +1,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuButtons : MonoBehaviour
+public class MenuButton : MonoBehaviour
 {
-    // Index of the current scene
-    private int currentSceneIndex = 0;
+    // The name of the scene to load
+    public string sceneName;
 
-    // Array of scene names
-    public string[] sceneNames = { "MainMenu", "Credits" };
-
-    // Method to switch to the next scene
-    public void NextScene()
+    // Method to switch scenes
+    public void SwitchScene()
     {
-        // Increment the current scene index
-        currentSceneIndex++;
-
-        // Wrap around if reaching the end of the scene array
-        if (currentSceneIndex >= sceneNames.Length)
-        {
-            currentSceneIndex = 0;
-        }
-
-        // Load the next scene
-        SceneManager.LoadScene(sceneNames[currentSceneIndex]);
+        // Load the specified scene
+        SceneManager.LoadScene(sceneName);
     }
 
-    // Method to switch to the previous scene
-    public void PreviousScene()
+    // Method to switch back to the previous scene
+    public void SwitchBack()
     {
-        // Decrement the current scene index
-        currentSceneIndex--;
+        // Get the index of the current scene
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
 
-        // Wrap around if reaching the beginning of the scene array
-        if (currentSceneIndex < 0)
-        {
-            currentSceneIndex = sceneNames.Length - 1;
-        }
-
-        // Load the previous scene
-        SceneManager.LoadScene(sceneNames[currentSceneIndex]);
+        // Load the scene with the index before the current one
+        SceneManager.LoadScene(currentIndex - 1);
     }
 }
-
