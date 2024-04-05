@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
 public class Skybox : MonoBehaviour
 {
     public float skySpeed; // Added semicolon
