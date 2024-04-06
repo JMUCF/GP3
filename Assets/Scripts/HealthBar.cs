@@ -46,4 +46,12 @@ public class HealthBar : MonoBehaviour
         Debug.Log("Player has died!");
         gameObject.SetActive(false);
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("laser"))
+        {
+            TakeDamage(5);
+        }
+    }
 }

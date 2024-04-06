@@ -70,8 +70,13 @@ public class Telekinesis : MonoBehaviour
 
     public void Pickup()
     {
-        //if(objectToPickup.CompareTag)
-        if (objectToPickup != null && objectCarried == null)
+        if(objectToPickup.CompareTag("lever"))
+        {
+            leverFlipped = true;
+            return;
+        }
+        
+        else if (objectToPickup != null && objectCarried == null)
         {
             objectCarried = objectToPickup;
             initialObjectPosition = objectCarried.transform.position;
