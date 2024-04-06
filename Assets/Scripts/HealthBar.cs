@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
@@ -43,7 +44,16 @@ public class HealthBar : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player has died!");
         gameObject.SetActive(false);
+        SceneManager.LoadScene("GameLose");
+
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("laser"))
+        {
+            TakeDamage(5);
+        }
     }
 }
