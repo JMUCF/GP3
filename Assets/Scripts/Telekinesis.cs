@@ -11,6 +11,7 @@ public class Telekinesis : MonoBehaviour
     public Transform playerLookAt;
     public GameObject laser;
     Animator animator;
+    public AudioSource shootingAudioSource;
 
     private float pickupDistance = 4f; // Maximum distance to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
@@ -103,6 +104,11 @@ public class Telekinesis : MonoBehaviour
         laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
 
         animator.SetBool("isShooting", true);
+
+        if (shootingAudioSource != null && shootingAudioSource.clip != null)
+        {
+            shootingAudioSource.Play();
+        }
 
         // Assuming you want to stop shooting after a delay or when another action is performed
         StartCoroutine(StopShootingAfterDelay());
