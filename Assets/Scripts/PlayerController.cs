@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerControls playerControls;
     private Rigidbody rb;
+    Animator animator;
     private float movementX;
     private float movementY;
     public float speed = 1f;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 
         playerControls = new PlayerControls();
         playerControls.Player.Jump.performed += ctx => OnJump(); // Subscribe to the jump input event
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("pickup") || collision.gameObject.CompareTag("MovingPlatform"))
         {
             isGrounded = true;
+            animator.SetBool("isJumping", false);
         }
     }
 
@@ -76,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             isGrounded = false; // Player is no longer grounded after jumping
+            animator.SetBool("isJumping", true);
         }
     }
 
@@ -85,6 +89,15 @@ public class PlayerController : MonoBehaviour
 
         movementX = movementVector.x;
         movementY = movementVector.y;
+        
+        if (movementVector.magnitude > 0)
+        {
+            animator.SetBool("isRunning", true); // Player is moving, set isRunning to true
+        }
+        else
+        {
+            animator.SetBool("isRunning", false); // Player is not moving, set isRunning to false
+        }
     }
     void OnEnable()
     {
