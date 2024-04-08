@@ -13,7 +13,7 @@ public class Telekinesis : MonoBehaviour
     Animator animator;
     public AudioSource shootingAudioSource;
 
-    private float pickupDistance = 4f; // Maximum distance to pick up the object
+    private float pickupDistance = 6f; // Maximum distance to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
     private GameObject objectCarried;
     private Vector3 initialObjectPosition; // Initial position of the object when picked up
