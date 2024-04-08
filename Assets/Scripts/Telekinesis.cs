@@ -9,11 +9,12 @@ public class Telekinesis : MonoBehaviour
     public bool form;
     public Transform playerCamera; // Reference to the player's camera
     public Transform playerLookAt;
+    public Transform shootPoint;
     public GameObject laser;
     Animator animator;
     public AudioSource shootingAudioSource;
 
-    private float pickupDistance = 6f; // Maximum distance to pick up the object
+    private float pickupDistance = 8f; // Maximum distance to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
     private GameObject objectCarried;
     private Vector3 initialObjectPosition; // Initial position of the object when picked up
@@ -100,7 +101,7 @@ public class Telekinesis : MonoBehaviour
     {
         Vector3 shootDirection = playerCamera.forward; // Calculate direction from player camera
 
-        GameObject laserInst = Instantiate(laser, new Vector3(playerLookAt.position.x - .25f, playerLookAt.position.y - .25f, playerLookAt.position.z + .25f), Quaternion.LookRotation(shootDirection));
+        GameObject laserInst = Instantiate(laser, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
         laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
 
         animator.SetBool("isShooting", true);
