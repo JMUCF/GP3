@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float maxEnergy = 3;
     public float currentEnergy;
     public Slider energyBar;
+    Animator animator;
     
     void Awake()
     {
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
         controls.Player.Shapeshift.performed += ctx => Shapeshift();
         currentEnergy = 0;
         UpdateEnergyUI();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,9 +41,10 @@ public class Player : MonoBehaviour
             if (currentEnergy >= 3)
             {
                 Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
-                //playerHuman.SetActive(false);
+                playerHuman.SetActive(false);
                 playerAlien.SetActive(true);
                 form = true;
+                animator.SetBool("isAlien", true);
                 currentEnergy -= 3; // Decrease energy level after transformation
             }
         }
@@ -49,9 +52,10 @@ public class Player : MonoBehaviour
         {
             // Transform back into a human without any restriction
             Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
-            //playerHuman.SetActive(true);
+            playerHuman.SetActive(true);
             playerAlien.SetActive(false);
             form = false;
+            animator.SetBool("isAlien", false);
         }
 
         UpdateEnergyUI();
