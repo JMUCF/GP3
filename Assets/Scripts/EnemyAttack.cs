@@ -9,7 +9,6 @@ public class EnemyAttack : MonoBehaviour
     public float viewRadius;
     [Range(0,360)]
     public float viewAngle;
-    public bool isPaused = false;
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     public List<Transform> visibleTarget = new List<Transform>();
