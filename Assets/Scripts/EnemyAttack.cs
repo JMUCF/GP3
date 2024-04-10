@@ -9,10 +9,10 @@ public class EnemyAttack : MonoBehaviour
     public float viewRadius;
     [Range(0,360)]
     public float viewAngle;
-    public bool isPaused = false;
     public LayerMask targetMask;
     public LayerMask obstacleMask;
     public List<Transform> visibleTarget = new List<Transform>();
+    public AudioSource shootingAudioSource;
 
     void Start()
     {
@@ -64,5 +64,10 @@ public class EnemyAttack : MonoBehaviour
 
         GameObject laserInst = Instantiate(laser, new Vector3 (transform.position.x, transform.position.y, transform.position.z + -1f), Quaternion.LookRotation(shootDirection));
         laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
+
+        if (shootingAudioSource != null && shootingAudioSource.clip != null)
+        {
+            shootingAudioSource.Play();
+        }
     }
 }

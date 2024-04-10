@@ -25,7 +25,7 @@ public class Elevator : MonoBehaviour
     {
         if (collision.CompareTag("Player") && winConditionMet)
         {
-            SceneManager.LoadScene(targetScene.name);
+            SceneManager.LoadScene("GameWin");
         }
     }
 }
