@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class AlienController : MonoBehaviour
 {
     private PlayerControls playerControls;
     private Rigidbody rb;
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("pickup") || collision.gameObject.CompareTag("MovingPlatform"))
         {
-            animator.SetBool("isJumping", false);
+            animator.SetBool("isAlienJump", false);
         }
     }
 
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
         // Apply force based on the new movement direction
         if (movement != Vector3.zero)
         {
-        
+
             if (rb.velocity.magnitude > maxSpeed) //clamps the player speed to maxSpeed if trying to move faster than maxSpeed
             {
                 rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             // Reset the velocity to zero when there's no movement input
-            if(isGrounded)
+            if (isGrounded)
                 rb.velocity = Vector3.zero;
         }
 
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             isGrounded = false; // Player is no longer grounded after jumping
-            animator.SetBool("isJumping", true);
+            animator.SetBool("isAlienJump", true);
         }
     }
 
@@ -113,15 +113,13 @@ public class PlayerController : MonoBehaviour
 
         movementX = movementVector.x;
         movementY = movementVector.y;
-        
+
         if (movementVector.magnitude > 0)
         {
-            animator.SetBool("isRunning", true);
             animator.SetBool("isAlienRun", true);
         }
         else
         {
-            animator.SetBool("isRunning", false);
             animator.SetBool("isAlienRun", false);
         }
     }

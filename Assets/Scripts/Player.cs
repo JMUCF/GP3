@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
                 playerHuman.SetActive(false);
                 playerAlien.SetActive(true);
                 form = true;
-                animator.SetBool("isAlien", true);
                 currentEnergy -= 3; // Decrease energy level after transformation
             }
         }
@@ -55,7 +54,6 @@ public class Player : MonoBehaviour
             playerHuman.SetActive(true);
             playerAlien.SetActive(false);
             form = false;
-            animator.SetBool("isAlien", false);
         }
 
         UpdateEnergyUI();
