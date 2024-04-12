@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Elevator : MonoBehaviour
 {
-    public Object targetScene;
     public bool winConditionMet = false;
     public Telekinesis telekinesis;
 

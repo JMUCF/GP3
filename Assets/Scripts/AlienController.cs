@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IDataPersistence
+public class AlienController : MonoBehaviour
 {
     private PlayerControls playerControls;
     private Rigidbody rb;
@@ -30,16 +30,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         mainCameraTransform = Camera.main.transform;
     }
 
-    public void LoadGame(GameData data)
-        {
-            this.transform.position = data.playerPosition;
-        }
-
-    public void SaveGame(ref GameData data)
-        {
-            data.playerPosition = this.transform.position;
-        }
-
     private void OnCollisionStay(Collision collision)
     {
         // Check if the player is grounded when they collide with something
@@ -53,7 +43,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("pickup") || collision.gameObject.CompareTag("MovingPlatform"))
         {
-            animator.SetBool("isJumping", false);
+            animator.SetBool("isAlienJump", false);
         }
     }
 
@@ -83,7 +73,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         // Apply force based on the new movement direction
         if (movement != Vector3.zero)
         {
-        
+
             if (rb.velocity.magnitude > maxSpeed) //clamps the player speed to maxSpeed if trying to move faster than maxSpeed
             {
                 rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -97,7 +87,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         else
         {
             // Reset the velocity to zero when there's no movement input
-            if(isGrounded)
+            if (isGrounded)
                 rb.velocity = Vector3.zero;
         }
 
@@ -113,7 +103,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             isGrounded = false; // Player is no longer grounded after jumping
-            animator.SetBool("isJumping", true);
+            animator.SetBool("isAlienJump", true);
         }
     }
 
@@ -123,15 +113,13 @@ public class PlayerController : MonoBehaviour, IDataPersistence
 
         movementX = movementVector.x;
         movementY = movementVector.y;
-        
+
         if (movementVector.magnitude > 0)
         {
-            animator.SetBool("isRunning", true);
             animator.SetBool("isAlienRun", true);
         }
         else
         {
-            animator.SetBool("isRunning", false);
             animator.SetBool("isAlienRun", false);
         }
     }
