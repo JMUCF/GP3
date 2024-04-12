@@ -37,7 +37,7 @@ Material:
     - _Cull: 0
     - _Glossiness: 0.65
     - _Metallic: 0.6
-    - _Smoothness: 0.4
+    - _Smoothness: 0.5
     m_Colors:
     - _BaseColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
     - _Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
