@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence
 {
     private PlayerControls playerControls;
     private Rigidbody rb;
@@ -30,6 +30,16 @@ public class PlayerController : MonoBehaviour
         mainCameraTransform = Camera.main.transform;
     }
 
+    public void LoadGame(GameData data)
+        {
+            this.transform.position = data.playerPosition;
+        }
+
+    public void SaveGame(ref GameData data)
+        {
+            data.playerPosition = this.transform.position;
+        }
+
     private void OnCollisionEnter(Collision collision)
     {
         // Check if the player is grounded when they collide with something
@@ -39,6 +49,8 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isJumping", false);
         }
     }
+
+    
 
     // Update is called once per frame
     void FixedUpdate()
