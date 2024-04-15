@@ -9,6 +9,8 @@ TagManager:
   - MovingPlatform
   - laser
   - lever
+  - hitbox
+  - groundEnemy
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ public class GroundEnemy : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     public Transform[] waypoints;
     private int currentWaypointIndex;
-    private int health;
+    public int health;
 
     private GroundEnemyFOV fov;
 
@@ -50,6 +50,9 @@ public class GroundEnemy : MonoBehaviour
             var myRenderer = GetComponent<Renderer>();
             myRenderer.material.color = Color.red;
         }
+
+        if (health <= 0)
+            Destroy(gameObject);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -57,6 +60,15 @@ public class GroundEnemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("You were caught!");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "hitbox")
+        {
+            health -= 25;
+            Destroy(other.gameObject);
         }
     }
 }

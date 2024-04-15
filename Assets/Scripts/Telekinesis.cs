@@ -11,6 +11,7 @@ public class Telekinesis : MonoBehaviour
     public Transform playerLookAt;
     public Transform shootPoint;
     public GameObject laser;
+    public GameObject hitBox;
     Animator animator;
     public AudioSource shootingAudioSource;
 
@@ -100,19 +101,28 @@ public class Telekinesis : MonoBehaviour
     public void Shoot()
     {
         Vector3 shootDirection = playerCamera.forward; // Calculate direction from player camera
+        form = gameObject.GetComponent<Player>().form;
 
-        GameObject laserInst = Instantiate(laser, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
-        laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
-
-        animator.SetBool("isShooting", true);
-
-        if (shootingAudioSource != null && shootingAudioSource.clip != null)
+        if(!form)
         {
-            shootingAudioSource.Play();
+            GameObject laserInst = Instantiate(laser, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
+            laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
+
+            animator.SetBool("isShooting", true);
+
+            if (shootingAudioSource != null && shootingAudioSource.clip != null)
+            {
+                shootingAudioSource.Play();
+            }
+
+            // Assuming you want to stop shooting after a delay or when another action is performed
+            StartCoroutine(StopShootingAfterDelay());
         }
 
-        // Assuming you want to stop shooting after a delay or when another action is performed
-        StartCoroutine(StopShootingAfterDelay());
+        else if(form)
+        {
+            GameObject hitBoxInst = Instantiate(hitBox, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
+        }
     }
 
     private IEnumerator StopShootingAfterDelay()
