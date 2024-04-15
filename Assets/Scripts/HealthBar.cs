@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Data.Common;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : MonoBehaviour, IDataPersistence
 {
     public float maxHealth = 100f;
     public float currentHealth;
@@ -16,6 +17,17 @@ public class HealthBar : MonoBehaviour
     {
         currentHealth = maxHealth;
         UpdateHealthBar();
+    }
+
+    public void LoadGame(GameData data)
+    {
+        this.currentHealth = data.currentHealth;
+
+    }
+
+    public void SaveGame(GameData data)
+    {
+        data.currentHealth = this.currentHealth;
     }
 
     public void TakeDamage(float damage)

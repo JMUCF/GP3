@@ -30,11 +30,15 @@ public class Player : MonoBehaviour, IDataPersistence
     public void LoadGame(GameData data)
     {
         this.currentEnergy = data.currentEnergy;
+        energyBar.value = this.currentEnergy;
+        this.form = data.form;
     }
 
     public void SaveGame(ref GameData data)
     {
         data.currentEnergy = this.currentEnergy;
+        data.currentEnergy = energyBar.value;
+        data.form = this.form;
     }
 
     // Update is called once per frame
