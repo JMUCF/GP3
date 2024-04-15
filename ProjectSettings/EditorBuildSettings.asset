@@ -6,28 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/TestLevel.unity
+    path: Assets/Scenes/TestLevels/TestLevel.unity
     guid: 849a556b036cc5d4498a57c6a787e516
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/TestLevels/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/UIMenus/MainMenu.unity
+    path: Assets/Scenes/AllOfficialScenes/UIMenus/MainMenu.unity
     guid: 0f68d161651f0f044aff0f9efe0e7a88
   - enabled: 1
-    path: Assets/Scenes/UIMenus/HowToPlay.unity
+    path: Assets/Scenes/AllOfficialScenes/UIMenus/HowToPlay.unity
     guid: fc6734dc279e6a64fb26a44f1891c045
   - enabled: 1
-    path: Assets/Scenes/EngineRoomLevel (1).unity
+    path: Assets/Scenes/AllOfficialScenes/EngineRoomLevel (1).unity
     guid: 52bf8a3cbc61ff34ab8c28ad3eedbd7a
   - enabled: 1
-    path: Assets/Scenes/UIMenus/GameLose.unity
+    path: Assets/Scenes/AllOfficialScenes/UIMenus/GameLose.unity
     guid: a30dd2e89fc05b14291f8e72ef7e2805
   - enabled: 1
-    path: Assets/Scenes/UIMenus/GameWin.unity
+    path: Assets/Scenes/AllOfficialScenes/UIMenus/GameWin.unity
     guid: 6e8c6dd1c920be44d8b61b855afb8b3a
   - enabled: 1
-    path: Assets/Scenes/UIMenus/Credits.unity
+    path: Assets/Scenes/AllOfficialScenes/UIMenus/Credits.unity
     guid: 23ad2e87702c36d408b38543f4f78704
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ede13c06fa535514b868c20653bf6532, type: 2}
