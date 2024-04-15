@@ -51,7 +51,7 @@ public class Player : MonoBehaviour, IDataPersistence
             if (currentEnergy >= 3)
             {
                 Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
-                playerHuman.SetActive(false);
+                //playerHuman.SetActive(false);
                 playerAlien.SetActive(true);
                 form = true;
                 currentEnergy -= 3; // Decrease energy level after transformation
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour, IDataPersistence
         {
             // Transform back into a human without any restriction
             Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
-            playerHuman.SetActive(true);
+            //playerHuman.SetActive(true);
             playerAlien.SetActive(false);
             form = false;
         }

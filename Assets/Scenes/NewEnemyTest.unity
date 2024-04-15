@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHuman: {fileID: 132875475}
-  playerAlien: {fileID: 1735585909}
+  playerAlien: {fileID: 570118131}
   form: 0
   shapeshiftSmoke: {fileID: 4539029517073645184, guid: 3ea1e25d0bc236745bb4ec2ed21ff4d2, type: 3}
   maxEnergy: 3
@@ -9026,7 +9026,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333462196}
-  m_LocalRotation: {x: 0.5057713, y: 0.000000014843388, z: -0.000000008702493, w: 0.8626677}
+  m_LocalRotation: {x: 0.5057713, y: -0.000000014843388, z: 0.000000008702493, w: 0.8626677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10173,11 +10173,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699789342}
   m_CullTransparentMesh: 1
---- !u!1 &1735585909 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1785700820412730810, guid: 295e91bdbbb19b544a2e841c3e7aaf07, type: 3}
-  m_PrefabInstance: {fileID: 1033340623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1735585910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6747137731774922375, guid: 295e91bdbbb19b544a2e841c3e7aaf07, type: 3}
