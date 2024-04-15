@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Telekinesis : MonoBehaviour
 {
@@ -8,9 +9,12 @@ public class Telekinesis : MonoBehaviour
     public bool form;
     public Transform playerCamera; // Reference to the player's camera
     public Transform playerLookAt;
+    public Transform shootPoint;
     public GameObject laser;
+    Animator animator;
+    public AudioSource shootingAudioSource;
 
-    private float pickupDistance = 4f; // Maximum distance to pick up the object
+    private float pickupDistance = 8f; // Maximum distance to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
     private GameObject objectCarried;
     private Vector3 initialObjectPosition; // Initial position of the object when picked up
@@ -20,11 +24,13 @@ public class Telekinesis : MonoBehaviour
 
     void Awake()
     {
+       
         liftWeight = 1;
         controls = new PlayerControls();
         controls.Player.Interact.performed += ctx => OnInteract();
         controls.Player.Launch.performed += ctx => LaunchObject();
         controls.Player.Shoot.performed += ctx => Shoot();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -95,9 +101,29 @@ public class Telekinesis : MonoBehaviour
     {
         Vector3 shootDirection = playerCamera.forward; // Calculate direction from player camera
 
-        GameObject laserInst = Instantiate(laser, new Vector3 (playerLookAt.position.x - .25f, playerLookAt.position.y - .25f, playerLookAt.position.z + .25f), Quaternion.LookRotation(shootDirection));
+        GameObject laserInst = Instantiate(laser, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
         laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
+
+        animator.SetBool("isShooting", true);
+
+        if (shootingAudioSource != null && shootingAudioSource.clip != null)
+        {
+            shootingAudioSource.Play();
+        }
+
+        // Assuming you want to stop shooting after a delay or when another action is performed
+        StartCoroutine(StopShootingAfterDelay());
     }
+
+    private IEnumerator StopShootingAfterDelay()
+    {
+        // Assuming the shooting animation takes 0.5 seconds
+        yield return new WaitForSeconds(1f); // Adjust the duration as needed
+
+        // Stop shooting animation
+        animator.SetBool("isShooting", false);
+    }
+
 
     void OnDrawGizmos()
     {

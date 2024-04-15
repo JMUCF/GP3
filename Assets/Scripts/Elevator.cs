@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Elevator : MonoBehaviour
 {
-    public Object targetScene;
     public bool winConditionMet = false;
     public Telekinesis telekinesis;
 
@@ -25,7 +24,7 @@ public class Elevator : MonoBehaviour
     {
         if (collision.CompareTag("Player") && winConditionMet)
         {
-            SceneManager.LoadScene(targetScene.name);
+            SceneManager.LoadScene("GameWin");
         }
     }
 }

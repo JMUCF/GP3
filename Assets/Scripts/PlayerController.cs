@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence
 {
     private PlayerControls playerControls;
     private Rigidbody rb;
+    public Animator animator;
     private float movementX;
     private float movementY;
     public float speed = 1f;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 
         playerControls = new PlayerControls();
         playerControls.Player.Jump.performed += ctx => OnJump(); // Subscribe to the jump input event
@@ -28,13 +30,36 @@ public class PlayerController : MonoBehaviour
         mainCameraTransform = Camera.main.transform;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void LoadGame(GameData data)
+        {
+            this.transform.position = data.playerPosition;
+        }
+
+    public void SaveGame(ref GameData data)
+        {
+            data.playerPosition = this.transform.position;
+        }
+
+    private void OnCollisionStay(Collision collision)
     {
         // Check if the player is grounded when they collide with something
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("pickup") || collision.gameObject.CompareTag("MovingPlatform"))
         {
             isGrounded = true;
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("pickup") || collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            animator.SetBool("isJumping", false);
+        }
+    }
+
+    private void OnCollisionExit()
+    {
+        isGrounded = false;
     }
 
     // Update is called once per frame
@@ -56,18 +81,30 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = (forward * movementY + right * movementX).normalized;
 
         // Apply force based on the new movement direction
-        if(rb.velocity.magnitude > maxSpeed) //clamps the player speed to maxSpeed if trying to move faster than maxSpeed               ########### edit this if to make an exception when player is falling. just checking if grounded is true doesn't work since player can just bunny hop really fast. need to only allow movespeed to exceed clamp on the y-axis.
+        if (movement != Vector3.zero)
         {
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-        }
-        else
-        {
-            rb.AddForce(movement * speed);
+        
+            if (rb.velocity.magnitude > maxSpeed) //clamps the player speed to maxSpeed if trying to move faster than maxSpeed
+            {
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            }
+            else
+            {
+                rb.AddForce(movement * speed * 2f); //the 2f increases acceleration so player reaches top speed quicker
+            }
         }
 
-        // Rotate the player to match the camera's forward direction (optional)
+        else
+        {
+            // Reset the velocity to zero when there's no movement input
+            if(isGrounded)
+                rb.velocity = Vector3.zero;
+        }
+
+        // Rotate the player to match the camera's forward direction
         transform.rotation = Quaternion.LookRotation(forward);
     }
+
 
     private void OnJump()
     {
@@ -76,6 +113,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             isGrounded = false; // Player is no longer grounded after jumping
+            animator.SetBool("isJumping", true);
         }
     }
 
@@ -85,7 +123,19 @@ public class PlayerController : MonoBehaviour
 
         movementX = movementVector.x;
         movementY = movementVector.y;
+        
+        if (movementVector.magnitude > 0)
+        {
+            animator.SetBool("isRunning", true);
+            animator.SetBool("isAlienRun", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isAlienRun", false);
+        }
     }
+
     void OnEnable()
     {
         if (playerControls != null)

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDataPersistence
 {
     PlayerControls controls;
     public GameObject playerHuman;
@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float maxEnergy = 3;
     public float currentEnergy;
     public Slider energyBar;
+    Animator animator;
     
     void Awake()
     {
@@ -23,6 +24,17 @@ public class Player : MonoBehaviour
         controls.Player.Shapeshift.performed += ctx => Shapeshift();
         currentEnergy = 0;
         UpdateEnergyUI();
+        animator = GetComponent<Animator>();
+    }
+
+    public void LoadGame(GameData data)
+    {
+        this.currentEnergy = data.currentEnergy;
+    }
+
+    public void SaveGame(ref GameData data)
+    {
+        data.currentEnergy = this.currentEnergy;
     }
 
     // Update is called once per frame
