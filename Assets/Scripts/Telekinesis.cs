@@ -18,6 +18,7 @@ public class Telekinesis : MonoBehaviour
     private float pickupDistance = 8f; // Maximum distance to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
     private GameObject objectCarried;
+    public GameObject interactUI;
     private Vector3 initialObjectPosition; // Initial position of the object when picked up
     private RaycastHit hit;
     private float knockbackForce = 0f;
@@ -49,11 +50,14 @@ public class Telekinesis : MonoBehaviour
         {
             if (hit.collider.CompareTag("pickup") && hit.rigidbody.mass <= liftWeight || hit.collider.CompareTag("lever")) //checks if player is looking at pickup object & is in correct form or if looking at a lever
             {
+                if (objectCarried == null)
+                    interactUI.SetActive(true);
                 objectToPickup = hit.collider.gameObject;
             }
         }
         else
         {
+            interactUI.SetActive(false);
             objectToPickup = null;
         }
     }
@@ -86,6 +90,7 @@ public class Telekinesis : MonoBehaviour
         
         else if (objectToPickup != null && objectCarried == null)
         {
+            interactUI.SetActive(false);
             objectCarried = objectToPickup;
             initialObjectPosition = objectCarried.transform.position;
         }
