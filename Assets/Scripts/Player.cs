@@ -37,12 +37,6 @@ public class Player : MonoBehaviour, IDataPersistence
         data.currentEnergy = this.currentEnergy;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void Shapeshift()
     {
         if (form == false) // If the player is currently in human form
