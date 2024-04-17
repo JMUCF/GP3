@@ -348,7 +348,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12624626}
-  m_LocalRotation: {x: 0.50193274, y: 0.000000013238115, z: -0.000000007682496, w: 0.8649067}
+  m_LocalRotation: {x: 0.50179064, y: -0.00010569377, z: 0.00006131423, w: 0.8649891}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7887,7 +7887,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820705775}
-  m_LocalRotation: {x: 0.52194566, y: 0.000000013653725, z: -0.000000008354842, w: 0.85297877}
+  m_LocalRotation: {x: 0.52180564, y: -0.00010419383, z: 0.00006373366, w: 0.8530644}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8288,7 +8288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winConditionMet: 0
-  telekinesis: {fileID: 0}
+  inALevel: 0
 --- !u!65 &883155827
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8748,7 +8748,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888752161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.4888918, y: 6.95862, z: -4.193693}
+  m_LocalPosition: {x: -14.447579, y: 22.447495, z: 21.134005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13099,19 +13099,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106929639588565653, guid: 772357d4a9f6cb14eb6afdd72c0bffd8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.9438958
+      value: -14.447579
       objectReference: {fileID: 0}
     - target: {fileID: 6106929639588565653, guid: 772357d4a9f6cb14eb6afdd72c0bffd8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3588736
+      value: 14.13
       objectReference: {fileID: 0}
     - target: {fileID: 6106929639588565653, guid: 772357d4a9f6cb14eb6afdd72c0bffd8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1936932
+      value: 25.679
       objectReference: {fileID: 0}
     - target: {fileID: 6106929639588565653, guid: 772357d4a9f6cb14eb6afdd72c0bffd8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6106929639588565653, guid: 772357d4a9f6cb14eb6afdd72c0bffd8, type: 3}
       propertyPath: m_LocalRotation.x
@@ -13119,7 +13119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106929639588565653, guid: 772357d4a9f6cb14eb6afdd72c0bffd8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6106929639588565653, guid: 772357d4a9f6cb14eb6afdd72c0bffd8, type: 3}
       propertyPath: m_LocalRotation.z
@@ -13131,7 +13131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6106929639588565653, guid: 772357d4a9f6cb14eb6afdd72c0bffd8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6106929639588565653, guid: 772357d4a9f6cb14eb6afdd72c0bffd8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -15361,7 +15361,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621282498}
-  m_LocalRotation: {x: 0.52194566, y: 0.000000013653725, z: -0.000000008354842, w: 0.85297877}
+  m_LocalRotation: {x: 0.52180564, y: -0.00010424736, z: 0.000063766405, w: 0.8530644}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19992,8 +19992,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081070700}
-  m_LocalRotation: {x: 0.5219457, y: 0.00000002885548, z: -0.000000017656939, w: 0.85297877}
-  m_LocalPosition: {x: 2.4888918, y: 5.398946, z: -3.4634092}
+  m_LocalRotation: {x: 0.5218057, y: -0.00010417565, z: 0.00006372257, w: 0.8530644}
+  m_LocalPosition: {x: -14.447051, y: 20.67419, z: 21.971737}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20678,4 +20678,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winConditionMet: 0
-  telekinesis: {fileID: 0}
+  inALevel: 0
