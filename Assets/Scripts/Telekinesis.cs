@@ -11,14 +11,17 @@ public class Telekinesis : MonoBehaviour
     public Transform playerLookAt;
     public Transform shootPoint;
     public GameObject laser;
+    public GameObject hitBox;
     Animator animator;
     public AudioSource shootingAudioSource;
 
     private float pickupDistance = 8f; // Maximum distance to pick up the object
     private GameObject objectToPickup; // Reference to the object to pick up
     private GameObject objectCarried;
+    public GameObject interactUI;
     private Vector3 initialObjectPosition; // Initial position of the object when picked up
     private RaycastHit hit;
+    private float knockbackForce = 0f;
 
     public bool leverFlipped = false;
 
@@ -47,11 +50,14 @@ public class Telekinesis : MonoBehaviour
         {
             if (hit.collider.CompareTag("pickup") && hit.rigidbody.mass <= liftWeight || hit.collider.CompareTag("lever")) //checks if player is looking at pickup object & is in correct form or if looking at a lever
             {
+                if (objectCarried == null)
+                    interactUI.SetActive(true);
                 objectToPickup = hit.collider.gameObject;
             }
         }
         else
         {
+            interactUI.SetActive(false);
             objectToPickup = null;
         }
     }
@@ -84,6 +90,7 @@ public class Telekinesis : MonoBehaviour
         
         else if (objectToPickup != null && objectCarried == null)
         {
+            interactUI.SetActive(false);
             objectCarried = objectToPickup;
             initialObjectPosition = objectCarried.transform.position;
         }
@@ -100,28 +107,57 @@ public class Telekinesis : MonoBehaviour
     public void Shoot()
     {
         Vector3 shootDirection = playerCamera.forward; // Calculate direction from player camera
+        form = gameObject.GetComponent<Player>().form;
 
-        GameObject laserInst = Instantiate(laser, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
-        laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
-
-        animator.SetBool("isShooting", true);
-
-        if (shootingAudioSource != null && shootingAudioSource.clip != null)
+        if(!form)
         {
-            shootingAudioSource.Play();
+            GameObject laserInst = Instantiate(laser, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
+            laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
+
+            animator.SetBool("isShooting", true);
+
+            if (shootingAudioSource != null && shootingAudioSource.clip != null)
+            {
+                shootingAudioSource.Play();
+            }
+            StartCoroutine(StopShootingAfterDelay());
         }
 
-        // Assuming you want to stop shooting after a delay or when another action is performed
-        StartCoroutine(StopShootingAfterDelay());
+        else if(form)
+        {
+            GameObject hitBoxInst = Instantiate(hitBox, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
+
+            Collider[] hitColliders = Physics.OverlapBox(hitBoxInst.transform.position, hitBoxInst.transform.localScale / 2);
+
+            foreach(Collider hitCollider in hitColliders)
+            {
+                // Check if the collider belongs to ground enemy
+                if(hitCollider.CompareTag("groundEnemy"))
+                {
+                    // Apply knockback force away from player
+                    Rigidbody enemyRigidbody = hitCollider.GetComponent<Rigidbody>();
+                    if(enemyRigidbody != null)
+                    {
+                        knockbackForce = 20000f; 
+                        enemyRigidbody.AddForce(shootDirection * knockbackForce);
+                        StartCoroutine(RemoveKnockback(enemyRigidbody));
+                    }
+                }
+            }
+        }
     }
 
     private IEnumerator StopShootingAfterDelay()
     {
-        // Assuming the shooting animation takes 0.5 seconds
-        yield return new WaitForSeconds(1f); // Adjust the duration as needed
-
-        // Stop shooting animation
+        yield return new WaitForSeconds(1f); 
         animator.SetBool("isShooting", false);
+    }
+
+    private IEnumerator RemoveKnockback(Rigidbody enemyRigidbody)
+    {
+        yield return new WaitForSeconds(.18f);
+        if(enemyRigidbody != null)
+            enemyRigidbody.velocity = Vector3.zero;
     }
 
 
