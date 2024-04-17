@@ -20,6 +20,7 @@ public class Telekinesis : MonoBehaviour
     private GameObject objectCarried;
     private Vector3 initialObjectPosition; // Initial position of the object when picked up
     private RaycastHit hit;
+    private float knockbackForce = 0f;
 
     public bool leverFlipped = false;
 
@@ -114,24 +115,44 @@ public class Telekinesis : MonoBehaviour
             {
                 shootingAudioSource.Play();
             }
-
-            // Assuming you want to stop shooting after a delay or when another action is performed
             StartCoroutine(StopShootingAfterDelay());
         }
 
         else if(form)
         {
             GameObject hitBoxInst = Instantiate(hitBox, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
+
+            Collider[] hitColliders = Physics.OverlapBox(hitBoxInst.transform.position, hitBoxInst.transform.localScale / 2);
+
+            foreach(Collider hitCollider in hitColliders)
+            {
+                // Check if the collider belongs to ground enemy
+                if(hitCollider.CompareTag("groundEnemy"))
+                {
+                    // Apply knockback force away from player
+                    Rigidbody enemyRigidbody = hitCollider.GetComponent<Rigidbody>();
+                    if(enemyRigidbody != null)
+                    {
+                        knockbackForce = 20000f; 
+                        enemyRigidbody.AddForce(shootDirection * knockbackForce);
+                        StartCoroutine(RemoveKnockback(enemyRigidbody));
+                    }
+                }
+            }
         }
     }
 
     private IEnumerator StopShootingAfterDelay()
     {
-        // Assuming the shooting animation takes 0.5 seconds
-        yield return new WaitForSeconds(1f); // Adjust the duration as needed
-
-        // Stop shooting animation
+        yield return new WaitForSeconds(1f); 
         animator.SetBool("isShooting", false);
+    }
+
+    private IEnumerator RemoveKnockback(Rigidbody enemyRigidbody)
+    {
+        yield return new WaitForSeconds(.18f);
+        if(enemyRigidbody != null)
+            enemyRigidbody.velocity = Vector3.zero;
     }
 
 
