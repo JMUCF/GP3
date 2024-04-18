@@ -1,26 +1,31 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NarrativeManager : MonoBehaviour
 {
-    public GameObject text;
-    public GameObject previousText;
+    public GameObject hiddenText;
+    public GameObject shownText;
+    public float textDuration = 5f; // Duration for how long the text stays active after being shown
+    public float stayDuration = 5f; // Duration for how long the player stays in the collider trigger
 
-    void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            previousText.SetActive(false);
-            StartCoroutine("Text"); 
+            shownText.SetActive(false);
+            StartCoroutine(ShowTextAndDelay());
         }
     }
 
-    private IEnumerator Text()
+    private IEnumerator ShowTextAndDelay()
     {
-        text.SetActive(true);
-        yield return new WaitForSeconds(5f);
-        text.SetActive(false);
+        hiddenText.SetActive(true);
+        yield return new WaitForSeconds(textDuration);
+
+        // Wait for the specified stay duration
+        yield return new WaitForSeconds(stayDuration);
+
+        hiddenText.SetActive(false);
         gameObject.SetActive(false);
     }
 }

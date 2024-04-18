@@ -19,8 +19,8 @@ public class PlayTheGame : MonoBehaviour
     {
         if (isMainSceneActive)
         {
-            //SceneManager.LoadScene("EngineRoomLevel (1)");
-            SceneManager.LoadScene("NewEnemyTest");
+
+            SceneManager.LoadScene("HubTutorialRoom");
         }
         else
         {
