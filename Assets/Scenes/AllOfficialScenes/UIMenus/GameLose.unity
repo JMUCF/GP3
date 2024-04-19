@@ -921,7 +921,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level 1 Failed
+  m_text: 'Level Failed
 
     (Restart?)'
   m_isRightToLeft: 0

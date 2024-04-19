@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour, IDataPersistence
+public class Player : MonoBehaviour//, IDataPersistence
 {
     PlayerControls controls;
     public GameObject playerHuman;
@@ -27,21 +27,21 @@ public class Player : MonoBehaviour, IDataPersistence
         animator = GetComponent<Animator>();
     }
 
+    /*
     public void LoadGame(GameData data)
     {
         this.currentEnergy = data.currentEnergy;
+        energyBar.value = this.currentEnergy;
+        this.form = data.form;
     }
 
     public void SaveGame(ref GameData data)
     {
         data.currentEnergy = this.currentEnergy;
+        data.currentEnergy = energyBar.value;
+        data.form = this.form;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    */
 
     void Shapeshift()
     {
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour, IDataPersistence
             if (currentEnergy >= 3)
             {
                 Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
-                playerHuman.SetActive(false);
+                //playerHuman.SetActive(false);
                 playerAlien.SetActive(true);
                 form = true;
                 currentEnergy -= 3; // Decrease energy level after transformation
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour, IDataPersistence
         {
             // Transform back into a human without any restriction
             Instantiate(shapeshiftSmoke, transform.position, Quaternion.Euler(-90, 0, 0));
-            playerHuman.SetActive(true);
+            //playerHuman.SetActive(true);
             playerAlien.SetActive(false);
             form = false;
         }
