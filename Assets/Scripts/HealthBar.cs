@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Data.Common;
 
-public class HealthBar : MonoBehaviour, IDataPersistence
+public class HealthBar : MonoBehaviour//, IDataPersistence
 {
     public float maxHealth = 100f;
     public float currentHealth;
@@ -19,6 +19,7 @@ public class HealthBar : MonoBehaviour, IDataPersistence
         UpdateHealthBar();
     }
 
+    /*
     public void LoadGame(GameData data)
     {
         this.currentHealth = data.currentHealth;
@@ -29,6 +30,7 @@ public class HealthBar : MonoBehaviour, IDataPersistence
     {
         data.currentHealth = this.currentHealth;
     }
+    */
 
     public void TakeDamage(float damage)
     {

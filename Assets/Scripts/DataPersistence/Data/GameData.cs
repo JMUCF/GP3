@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class GameData
 {
+    /*
     public float currentEnergy;
 
     public Slider energyBar;
@@ -15,5 +16,5 @@ public class GameData
     {
         this.currentEnergy = 0;
         energyBar.value = currentEnergy;
-    }
+    }*/
 }

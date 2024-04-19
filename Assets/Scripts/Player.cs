@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour, IDataPersistence
+public class Player : MonoBehaviour//, IDataPersistence
 {
     PlayerControls controls;
     public GameObject playerHuman;
@@ -27,6 +27,7 @@ public class Player : MonoBehaviour, IDataPersistence
         animator = GetComponent<Animator>();
     }
 
+    /*
     public void LoadGame(GameData data)
     {
         this.currentEnergy = data.currentEnergy;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour, IDataPersistence
         data.currentEnergy = energyBar.value;
         data.form = this.form;
     }
+    */
 
     void Shapeshift()
     {

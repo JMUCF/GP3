@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour, IDataPersistence
+public class PlayerController : MonoBehaviour//, IDataPersistence
 {
     private PlayerControls playerControls;
     private Rigidbody rb;
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         mainCameraTransform = Camera.main.transform;
     }
 
+    /*
     public void LoadGame(GameData data)
         {
             this.transform.position = data.playerPosition;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         {
             data.playerPosition = this.transform.position;
         }
+    */
 
     private void OnCollisionStay(Collision collision)
     {
