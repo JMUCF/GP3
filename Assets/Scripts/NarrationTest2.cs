@@ -8,35 +8,44 @@ public class NarrationTest2 : MonoBehaviour
     public AudioClip preTextAudioClip; // Audio clip to play before showing the first text
     public AudioSource audioSource; // Reference to the AudioSource component
     public float audioTransitionDuration = 1f; // Duration of the transition between audio clip and first text
+    public float textDelay = 0f; // Delay before starting to display text after collider trigger
 
     private int currentIndex = -1; // Index to keep track of the current text being displayed, initialized to -1
-    private bool dialogueStarted = false; // Flag to track if the dialogue has started
+    private bool audioPlayed = false; // Flag to track if the pre-text audio clip has been played
+    private bool audioTriggered = false; // Flag to track if the audio has been triggered for the current collider
+
+    // Flag to track whether this collider trigger has been activated before
+    private bool activated = false;
 
     // OnTriggerEnter is called when the Collider other enters the trigger
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the collider belongs to the player and if the dialogue has not started yet
-        if (other.CompareTag("Player") && !dialogueStarted)
+        // Check if the collider belongs to the player and if this collider trigger has not been activated before
+        if (other.CompareTag("Player") && !activated)
         {
+            // Mark this collider trigger as activated
+            activated = true;
+
             // Start the dialogue
-            dialogueStarted = true;
             StartCoroutine(PlayAudioAndShowNextText());
         }
     }
 
     private IEnumerator PlayAudioAndShowNextText()
     {
-        // Play the pre-text audio clip with a transition duration
-        if (preTextAudioClip != null && audioSource != null)
+        // Play the pre-text audio clip with a transition duration if it hasn't been played yet for this collider trigger
+        if (preTextAudioClip != null && audioSource != null && !audioPlayed)
         {
             // Start playing the audio clip
             audioSource.PlayOneShot(preTextAudioClip);
+            audioPlayed = true; // Set the flag to indicate that the audio has been played
+            audioTriggered = true; // Set the flag to indicate that the audio has been triggered for this collider
 
             // Wait for the transition duration before showing the first text
             yield return new WaitForSeconds(audioTransitionDuration);
         }
 
-        // Show the first text after playing the audio clip
+        // Show the first text after playing the audio clip or without it
         ShowNextText();
     }
 
@@ -67,15 +76,12 @@ public class NarrationTest2 : MonoBehaviour
             yield return new WaitForSeconds(audioTransitionDuration); // Wait for the transition duration
             ShowNextText();
         }
-    }
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        // Deactivate all text elements at the start
-        foreach (GameObject text in texts)
+        else
         {
-            text.SetActive(false);
+            // Reset flags and static variable when the sequence is finished
+            audioPlayed = false;
+            audioTriggered = false;
+            currentIndex = -1;
         }
     }
 }
