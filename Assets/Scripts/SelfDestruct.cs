@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class SelfDestruct : MonoBehaviour
 {
+    private float delay = 0f;
 
     void Start()
     {
+        if (gameObject.tag == "laser")
+            delay = 5f;
+        else if (gameObject.tag == "hitbox")
+            delay = .15f;
+
         StartCoroutine(die());
     }
 
@@ -17,7 +23,7 @@ public class SelfDestruct : MonoBehaviour
 
     public IEnumerator die()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }
 }

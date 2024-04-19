@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 206392807}
   - component: {fileID: 206392806}
   - component: {fileID: 206392805}
-  - component: {fileID: 206392804}
+  - component: {fileID: 206392808}
   m_Layer: 5
   m_Name: Button (9)
   m_TagString: Untagged
@@ -163,19 +163,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 391}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &206392804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206392802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0121156305adf4e45afd0f36ba874191, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  switchSceneButton: {fileID: 206392805}
 --- !u!114 &206392805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +245,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206392802}
   m_CullTransparentMesh: 1
+--- !u!114 &206392808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206392802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29cbcfa9ba7cfeb49bd52d3ccc96ed64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchToHubButton: {fileID: 206392805}
 --- !u!1 &273001379
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level 1 Completed!
+  m_text: 'Level Completed!
 
     (Play Again?)'
   m_isRightToLeft: 0
