@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Elevator : MonoBehaviour
 {
-    public bool winConditionMet = false;
-    //public bool inALevel;
     private saveState saveStateScript;
 
     public void Start()
@@ -15,30 +13,27 @@ public class Elevator : MonoBehaviour
         saveStateScript = GameObject.Find("LevelSaveState").GetComponent<saveState>();
     }
 
-    public void Update()
-    {
-
-    }
-
     public void OnTriggerEnter(Collider collision)
     {
-        if (saveStateScript.inALevel && saveStateScript.telekinesis.leverFlipped)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            saveStateScript.inALevel = false;
-            SceneManager.LoadScene("GameWin");
-        }
-        else if (!saveStateScript.levelOnePass)
-        {
-            saveStateScript.inALevel = true;
-            SceneManager.LoadScene("EngineRoomLevel (1)");
-        }
-        else if (saveStateScript.levelOnePass && !saveStateScript.levelTwoPass)
-        {
-            saveStateScript.inALevel = true;
-            SceneManager.LoadScene("NewEnemyTest");
-        }
-        else if (saveStateScript.levelOnePass && saveStateScript.levelTwoPass)
-            Debug.Log("Level doesn't exist yet");
-
+            if (saveStateScript.inALevel && saveStateScript.telekinesis.leverFlipped)
+            {
+                saveStateScript.inALevel = false;
+                SceneManager.LoadScene("GameWin");
+            }
+            else if (!saveStateScript.levelOnePass)
+            {
+                saveStateScript.inALevel = true;
+                SceneManager.LoadScene("EngineRoom");
+            }
+            else if (saveStateScript.levelOnePass && !saveStateScript.levelTwoPass)
+            {
+                saveStateScript.inALevel = true;
+                SceneManager.LoadScene("NewEnemyTest");
+            }
+            else if (saveStateScript.levelOnePass && saveStateScript.levelTwoPass)
+                Debug.Log("Level doesn't exist yet");
+    }
     }
 }

@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class saveState : MonoBehaviour
 {
     public bool levelOnePass = false;
     public bool levelTwoPass = false;
     public bool levelThreePass = false;
-    public bool inALevel = false;
+    public bool inALevel = true;
 
     public Telekinesis telekinesis;
 
@@ -15,20 +16,29 @@ public class saveState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //telekinesis = GameObject.Find("Player").GetComponent<Telekinesis>();
         DontDestroyOnLoad(transform.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        telekinesis = GameObject.Find("Player").GetComponent<Telekinesis>();
+        Scene scene = SceneManager.GetActiveScene();
+        if(inALevel)
+        {
+            telekinesis = GameObject.Find("Player").GetComponent<Telekinesis>();
 
-        if (!levelOnePass)
-            levelOnePass = telekinesis.leverFlipped;
-        else if(levelOnePass && !levelTwoPass)
-            levelTwoPass = telekinesis.leverFlipped;
-        else if(levelOnePass && levelTwoPass)
-            levelThreePass = telekinesis.leverFlipped;
+            if (scene.name == "EngineRoom")
+            {
+                levelOnePass = telekinesis.leverFlipped;
+            }
+            else if(scene.name == "NewEnemyTest")
+            {
+                levelTwoPass = telekinesis.leverFlipped;
+            }
+            else if(levelOnePass && levelTwoPass)
+            {
+                Debug.Log("doesn't exist yet");
+            }
+        }
     }
 }
