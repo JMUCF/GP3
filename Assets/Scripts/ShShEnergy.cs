@@ -5,6 +5,8 @@ using UnityEngine;
 public class ShShEnergy : MonoBehaviour
 {
     private Player _player;
+    public GameObject child;
+    private bool childActive;
 
     // Start is called before the first frame update
     void Start()
@@ -14,21 +16,26 @@ public class ShShEnergy : MonoBehaviour
         {
             Debug.LogError("Player is null");
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        childActive = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && _player )
+        if (other.gameObject.tag == "Player" && _player && childActive)
         {
             _player.AddEnergy(1);
 
-            Destroy(gameObject);
+            child.SetActive(false);
+            childActive = false;
+            StartCoroutine("RespawnChild");
         }
+    }
+
+    private IEnumerator RespawnChild()
+    {
+        yield return new WaitForSeconds(10f);
+        child.SetActive(true);
+        childActive = true;
     }
 }
