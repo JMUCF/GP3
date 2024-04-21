@@ -35,5 +35,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AllOfficialScenes/EngineRoom.unity
     guid: 15a3bbfbacb9b244e9e4544cde601452
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: d0415a5d9184b3a4c96bf0f1152e899a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ede13c06fa535514b868c20653bf6532, type: 2}

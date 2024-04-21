@@ -26,12 +26,14 @@ public class saveState : MonoBehaviour
         if(inALevel)
         {
             telekinesis = GameObject.Find("Player").GetComponent<Telekinesis>();
+            if(telekinesis == null)
+                Debug.Log("uh oh");
 
             if (scene.name == "EngineRoom")
             {
                 levelOnePass = telekinesis.leverFlipped;
             }
-            else if(scene.name == "NewEnemyTest")
+            else if(scene.name == "Level2")
             {
                 levelTwoPass = telekinesis.leverFlipped;
             }

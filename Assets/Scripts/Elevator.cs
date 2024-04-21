@@ -30,7 +30,7 @@ public class Elevator : MonoBehaviour
             else if (saveStateScript.levelOnePass && !saveStateScript.levelTwoPass)
             {
                 saveStateScript.inALevel = true;
-                SceneManager.LoadScene("NewEnemyTest");
+                SceneManager.LoadScene("Level2");
             }
             else if (saveStateScript.levelOnePass && saveStateScript.levelTwoPass)
                 Debug.Log("Level doesn't exist yet");
