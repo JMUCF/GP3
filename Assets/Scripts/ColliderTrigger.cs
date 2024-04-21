@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LeverColliderActivation : MonoBehaviour
+public class ColliderTrigger : MonoBehaviour
 {
     public GameObject colliderToActivate; // Reference to the collider GameObject to activate
     public string leverTag = "Lever"; // Tag of the lever to interact with
