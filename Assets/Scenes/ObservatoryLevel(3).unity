@@ -15704,9 +15704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a96153338c4bfc4f9db39d2e88bded8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScene: {fileID: 0}
-  winConditionMet: 0
-  telekinesis: {fileID: 1245110274}
 --- !u!1001 &883573479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16166,7 +16163,11 @@ MonoBehaviour:
   form: 0
   playerCamera: {fileID: 1199083064}
   playerLookAt: {fileID: 2102270113}
+  shootPoint: {fileID: 0}
   laser: {fileID: 6543770950126461909, guid: 7de39c2b017f6d341b4faff03495e5ad, type: 3}
+  hitBox: {fileID: 0}
+  shootingAudioSource: {fileID: 0}
+  interactUI: {fileID: 0}
   leverFlipped: 0
 --- !u!1001 &914040886
 PrefabInstance:
@@ -16567,7 +16568,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917292714}
-  m_LocalRotation: {x: 0.5257311, y: -0.000000014636621, z: 0.000000009045928, w: 0.85065085}
+  m_LocalRotation: {x: 0.5257311, y: 0.000000014636621, z: -0.000000009045928, w: 0.85065085}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20845,7 +20846,11 @@ MonoBehaviour:
   form: 0
   playerCamera: {fileID: 1199083064}
   playerLookAt: {fileID: 774835977}
+  shootPoint: {fileID: 0}
   laser: {fileID: 6543770950126461909, guid: 7de39c2b017f6d341b4faff03495e5ad, type: 3}
+  hitBox: {fileID: 0}
+  shootingAudioSource: {fileID: 0}
+  interactUI: {fileID: 0}
   leverFlipped: 0
 --- !u!114 &1245110276
 MonoBehaviour:
@@ -20943,6 +20948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f8b68441aa2ab448a1d9310fa9279d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   speed: 20
   jumpHeight: 7
 --- !u!114 &1245110281
@@ -23750,6 +23756,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.33098
       objectReference: {fileID: 0}
+    - target: {fileID: 8328840983627280594, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3525406295342925398, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
@@ -24887,7 +24897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1548042577
 Transform:
   m_ObjectHideFlags: 0
@@ -24915,9 +24925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a96153338c4bfc4f9db39d2e88bded8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScene: {fileID: 102900000, guid: 6e8c6dd1c920be44d8b61b855afb8b3a, type: 3}
-  winConditionMet: 0
-  telekinesis: {fileID: 0}
 --- !u!65 &1548042579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26213,7 +26220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676925374}
-  m_LocalRotation: {x: 0.5057713, y: 0.000000014843384, z: -0.000000008702493, w: 0.8626676}
+  m_LocalRotation: {x: 0.5057713, y: -0.000000014843391, z: 0.000000008702496, w: 0.8626676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
