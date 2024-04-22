@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 4413021147869141628, guid: 82368d726680b7b40a7678ec23e3d88e, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -138,7 +142,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
