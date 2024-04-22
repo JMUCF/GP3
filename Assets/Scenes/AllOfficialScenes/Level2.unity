@@ -3292,7 +3292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1788, y: 1055}
+  m_AnchoredPosition: {x: -159.8, y: -56.6}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &198145435
@@ -6982,7 +6982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leverTag: lever
-  interactionSound: {fileID: 8300000, guid: 1a682f5c762d9c84c9386011b4f27b65, type: 3}
+  interactionSound: {fileID: 8300000, guid: 5b208089906870e4b8bf8d581ade567d, type: 3}
   audioSource: {fileID: 358017713}
 --- !u!1 &365506459
 GameObject:
@@ -7763,7 +7763,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416090907}
-  m_LocalRotation: {x: 0.51889116, y: 0.000000029417416, z: -0.000000017856477, w: 0.85484034}
+  m_LocalRotation: {x: 0.51889116, y: -0.000000029417416, z: 0.000000017856477, w: 0.85484034}
   m_LocalPosition: {x: 15.006917, y: 9.500006, z: -104.57209}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20403,7 +20403,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784436887}
-  m_LocalRotation: {x: 0.51889116, y: -0.000000014708707, z: 0.000000008928238, w: 0.85484034}
+  m_LocalRotation: {x: 0.51889116, y: 0.000000014708707, z: -0.000000008928238, w: 0.85484034}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32707,7 +32707,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502969522}
-  m_LocalRotation: {x: 0.49883562, y: 0.000000021089766, z: -0.000000012138421, w: 0.86669666}
+  m_LocalRotation: {x: 0.4988356, y: -0.00000002108975, z: 0.00000001213841, w: 0.86669666}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -43963,7 +43963,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106013615}
-  m_LocalRotation: {x: 0.51889116, y: 0.000000014708707, z: -0.000000008928238, w: 0.85484034}
+  m_LocalRotation: {x: 0.51889116, y: -0.000000014708707, z: 0.000000008928238, w: 0.85484034}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
