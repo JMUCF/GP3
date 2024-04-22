@@ -16,7 +16,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(FindTarget(.1f));
+        StartCoroutine(FindTarget(.25f));
     }
 
     IEnumerator FindTarget(float delay)
