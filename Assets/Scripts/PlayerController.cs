@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour//, IDataPersistence
+public class PlayerController : MonoBehaviour
 {
     private PlayerControls playerControls;
     private Rigidbody rb;
@@ -29,18 +29,6 @@ public class PlayerController : MonoBehaviour//, IDataPersistence
         // Assuming the camera is a child of the player, otherwise, find the camera in the scene.
         mainCameraTransform = Camera.main.transform;
     }
-
-    /*
-    public void LoadGame(GameData data)
-        {
-            this.transform.position = data.playerPosition;
-        }
-
-    public void SaveGame(ref GameData data)
-        {
-            data.playerPosition = this.transform.position;
-        }
-    */
 
     private void OnCollisionStay(Collision collision)
     {

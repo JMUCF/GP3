@@ -8,6 +8,7 @@ public class GroundEnemy : MonoBehaviour
 {
     public Transform target;
     public int speed = 115;
+    public Animator animator;
     public NavMeshAgent navMeshAgent;
     public Transform[] waypoints;
     private int currentWaypointIndex;
@@ -24,6 +25,8 @@ public class GroundEnemy : MonoBehaviour
         navMeshAgent.stoppingDistance = 1f;
 
         health = 100;
+
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,19 +41,7 @@ public class GroundEnemy : MonoBehaviour
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
         }
-
-        if (health <= 50 && health > 25)
-        {
-            var myRenderer = GetComponent<Renderer>();
-            myRenderer.material.color = Color.yellow;
-        }
         
-        if (health <= 25)
-        {
-            var myRenderer = GetComponent<Renderer>();
-            myRenderer.material.color = Color.red;
-        }
-
         if (health <= 0)
             Destroy(gameObject);
     }

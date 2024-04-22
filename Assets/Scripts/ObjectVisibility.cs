@@ -10,16 +10,8 @@ namespace MyNamespace
         void Update()
         {
             // Check if the BossBot enemy exists and is defeated
-            if (bossBotEnemy != null && !bossBotEnemy.activeSelf)
-            {
+            if (bossBotEnemy == null)
                 objectToShow.SetActive(true);
-                // Optionally disable this script or remove the reference to bossBotEnemy
-                enabled = false;
-            }
-            else
-            {
-                objectToShow.SetActive(false);
-            }
         }
     }
 }

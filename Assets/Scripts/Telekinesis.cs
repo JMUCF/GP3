@@ -138,7 +138,7 @@ public class Telekinesis : MonoBehaviour
                     Rigidbody enemyRigidbody = hitCollider.GetComponent<Rigidbody>();
                     if(enemyRigidbody != null)
                     {
-                        knockbackForce = 20000f; 
+                        knockbackForce = 200000f; 
                         enemyRigidbody.AddForce(shootDirection * knockbackForce);
                         StartCoroutine(RemoveKnockback(enemyRigidbody));
                     }
