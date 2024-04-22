@@ -37,9 +37,9 @@ public class saveState : MonoBehaviour
             {
                 levelTwoPass = telekinesis.leverFlipped;
             }
-            else if(levelOnePass && levelTwoPass)
+            else if(scene.name == "Observatory")
             {
-                Debug.Log("doesn't exist yet");
+                levelThreePass = telekinesis.leverFlipped;
             }
         }
     }

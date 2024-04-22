@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour//, IDataPersistence
+public class Player : MonoBehaviour
 {
     PlayerControls controls;
     public GameObject playerHuman;
@@ -19,29 +19,13 @@ public class Player : MonoBehaviour//, IDataPersistence
     void Awake()
     {
         form = false; //false is human true is alien
-        //Cursor.visible = false; only enable this once we have a crosshair or something
+        Cursor.visible = false; //only enable this once we have a crosshair or something
         controls = new PlayerControls();
         controls.Player.Shapeshift.performed += ctx => Shapeshift();
         currentEnergy = 0;
         UpdateEnergyUI();
         animator = GetComponent<Animator>();
     }
-
-    /*
-    public void LoadGame(GameData data)
-    {
-        this.currentEnergy = data.currentEnergy;
-        energyBar.value = this.currentEnergy;
-        this.form = data.form;
-    }
-
-    public void SaveGame(ref GameData data)
-    {
-        data.currentEnergy = this.currentEnergy;
-        data.currentEnergy = energyBar.value;
-        data.form = this.form;
-    }
-    */
 
     void Shapeshift()
     {
