@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TestLevels/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/TestLevels/NewEnemyTest.unity
+    guid: fe52a45e4b2cb1040b63acccc19d6e89
   - enabled: 1
     path: Assets/Scenes/AllOfficialScenes/UIMenus/MainMenu.unity
     guid: 0f68d161651f0f044aff0f9efe0e7a88
@@ -26,9 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AllOfficialScenes/UIMenus/Credits.unity
     guid: 23ad2e87702c36d408b38543f4f78704
-  - enabled: 0
-    path: Assets/Scenes/TestLevels/NewEnemyTest.unity
-    guid: fe52a45e4b2cb1040b63acccc19d6e89
+  - enabled: 1
+    path: Assets/Scenes/AllOfficialScenes/UIMenus/GameOver.unity
+    guid: 2458dc9cfdafc9b42b0d880f02786d54
   - enabled: 1
     path: Assets/Scenes/AllOfficialScenes/HubTutorialRoom.unity
     guid: 79a7ce42f99ec054398bdbd3a608390f
