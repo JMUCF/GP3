@@ -32,11 +32,13 @@ public class Elevator : MonoBehaviour
                 saveStateScript.inALevel = true;
                 SceneManager.LoadScene("Level2");
             }
-            else if (saveStateScript.levelOnePass && saveStateScript.levelTwoPass)
+            else if (saveStateScript.levelOnePass && saveStateScript.levelTwoPass && !saveStateScript.levelThreePass)
             {
                 saveStateScript.inALevel = true;
                 SceneManager.LoadScene("Observatory");
             }
+            else
+                Debug.Log("All levels complete");
     }
     }
 }
