@@ -41,6 +41,8 @@ public class GroundEnemy : MonoBehaviour
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
         }
+
+        
         
         if (health <= 0)
             Destroy(gameObject);
