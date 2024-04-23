@@ -27,6 +27,7 @@ public class GroundEnemy : MonoBehaviour
         health = 100;
 
         animator = GetComponent<Animator>();
+        animator.SetBool("isWalking", true);
     }
 
     // Update is called once per frame
@@ -43,7 +44,11 @@ public class GroundEnemy : MonoBehaviour
         }
         
         if (health <= 0)
+        {
             Destroy(gameObject);
+        }
+
+        
     }
 
     void OnCollisionEnter(Collision collision)
