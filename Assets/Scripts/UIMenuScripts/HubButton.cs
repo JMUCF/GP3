@@ -15,6 +15,6 @@ public class HubButton : MonoBehaviour
 
     void SwitchToMain()
     {
-        SceneManager.LoadScene("HubTutorialRoom");
+        SceneManager.LoadScene("HubCutScene");
     }
 }
