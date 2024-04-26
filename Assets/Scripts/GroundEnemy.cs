@@ -27,6 +27,7 @@ public class GroundEnemy : MonoBehaviour
         health = 100;
 
         animator = GetComponent<Animator>();
+        animator.SetBool("isWalking", true);
     }
 
     // Update is called once per frame
@@ -41,9 +42,15 @@ public class GroundEnemy : MonoBehaviour
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
         }
+
+        
         
         if (health <= 0)
+        {
             Destroy(gameObject);
+        }
+
+        
     }
 
     void OnCollisionEnter(Collision collision)
