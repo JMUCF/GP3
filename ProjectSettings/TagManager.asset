@@ -12,6 +12,7 @@ TagManager:
   - hitbox
   - groundEnemy
   - narrative
+  - DollyCart
   layers:
   - Default
   - TransparentFX
