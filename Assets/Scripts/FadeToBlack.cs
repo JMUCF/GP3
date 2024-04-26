@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FadeToBlack : MonoBehaviour
 {
@@ -30,5 +31,6 @@ public class FadeToBlack : MonoBehaviour
         }
 
         fadeImage.color = targetColor;
+        SceneManager.LoadScene("HubTutorialRoom");
     }
 }
