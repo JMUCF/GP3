@@ -47,5 +47,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AllOfficialScenes/Observatory.unity
     guid: 8f5b3d65eaab42a43be2bbb62b371e22
+  - enabled: 1
+    path: Assets/Scenes/AllOfficialScenes/EndCutScene.unity
+    guid: 7c8368bfcd9a2ac448ef96c068eb81c8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ede13c06fa535514b868c20653bf6532, type: 2}

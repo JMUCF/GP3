@@ -10,7 +10,7 @@ public class EndTheGame : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player is in the trigger.");
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("EndCutScene");
         }
     }
 }
