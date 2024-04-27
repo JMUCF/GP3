@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class saveState : MonoBehaviour
 {
+    private static saveState instance;
+
     public bool levelOnePass = false;
     public bool levelTwoPass = false;
     public bool levelThreePass = false;
@@ -12,11 +14,18 @@ public class saveState : MonoBehaviour
 
     public Telekinesis telekinesis;
 
-
-    // Start is called before the first frame update
-    void Start()
+    // Make sure only one saveState exists
+    void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Update is called once per frame
