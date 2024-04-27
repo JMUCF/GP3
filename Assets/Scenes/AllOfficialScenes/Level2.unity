@@ -33286,7 +33286,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502969522}
-  m_LocalRotation: {x: 0.49945852, y: -0.000000014906545, z: 0.000000008593877, w: 0.86633784}
+  m_LocalRotation: {x: 0.49945852, y: 0.000000014906535, z: -0.0000000085938705, w: 0.86633784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45870,6 +45870,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2642366112108628056, guid: 15c57d4a10f51e74cb07e06c150bc804, type: 3}
+      propertyPath: viewRadius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3013428433807724093, guid: 15c57d4a10f51e74cb07e06c150bc804, type: 3}
       propertyPath: m_Name
       value: SmallBotRigged
@@ -45877,7 +45881,7 @@ PrefabInstance:
     - target: {fileID: 7434269871626600605, guid: 15c57d4a10f51e74cb07e06c150bc804, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 421571766}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
