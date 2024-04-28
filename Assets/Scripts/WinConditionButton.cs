@@ -4,7 +4,13 @@ using UnityEngine.SceneManagement;
 public class WinConditionButton : MonoBehaviour
 {
     // Reference to the saveState script
-    public saveState SaveState;
+    private saveState SaveState;
+    public Telekinesis telekinesis;
+
+    public void Start()
+    {
+        SaveState = GameObject.Find("LevelSaveState").GetComponent<saveState>();
+    }
 
     // Function to handle button click event
     public void OnWinButtonClick()
@@ -13,15 +19,25 @@ public class WinConditionButton : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         if (scene.name == "EngineRoom")
         {
-            SaveState.levelOnePass = true;
+            telekinesis.leverFlipped = true;
         }
         else if (scene.name == "Level2")
         {
-            SaveState.levelTwoPass = true;
+            telekinesis.leverFlipped = true;
         }
         else if (scene.name == "Observatory")
         {
-            SaveState.levelThreePass = true;
+            telekinesis.leverFlipped = true;
+        }
+    }
+
+    void Update()
+    {
+        if(SaveState.inALevel)
+        {
+            telekinesis = GameObject.Find("Player").GetComponent<Telekinesis>();
+            if(telekinesis == null)
+                Debug.Log("uh oh");
         }
     }
 }
