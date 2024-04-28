@@ -8,8 +8,14 @@ public class ControllerTextOverlay : MonoBehaviour
     public TextMeshProUGUI controllerText;
     public InputActionReference[] finishActions; // Specify the actions to finish the function
     public float fadeDuration = 2f;
+    private saveState saveStateScript;
 
     private bool functionCompleted = false;
+
+    public void Start()
+    {
+        saveStateScript = GameObject.Find("LevelSaveState").GetComponent<saveState>();
+    }
 
     private IEnumerator FadeOutText()
     {
@@ -62,7 +68,7 @@ public class ControllerTextOverlay : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !functionCompleted)
+        if (other.CompareTag("Player") && !functionCompleted && !saveStateScript.levelOnePass)
         {
             controllerText.gameObject.SetActive(true);
             StartCoroutine(FadeInText());
