@@ -11,10 +11,12 @@ public class GroundEnemy : MonoBehaviour
     public Animator animator;
     public NavMeshAgent navMeshAgent;
     public Transform[] waypoints;
+    public GameObject hitBox;
+    private float knockbackForce = 0f;
     private int currentWaypointIndex;
     public int health;
-
     private GroundEnemyFOV fov;
+    private HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -55,10 +57,28 @@ public class GroundEnemy : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player")
         {
-            Debug.Log("You were caught!");
+            healthBar = collision.gameObject.GetComponent<HealthBar>();
+            Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+
+            if(enemyRigidbody != null)
+            {
+                healthBar.TakeDamage(10);
+                knockbackForce = 3000f;
+                enemyRigidbody.AddForce(transform.up * (knockbackForce/2));
+                enemyRigidbody.AddForce(transform.forward * knockbackForce);
+                StartCoroutine(RemoveKnockback(enemyRigidbody));
+            }
+            Debug.Log("boss has collided");
         }
+    }
+
+    private IEnumerator RemoveKnockback(Rigidbody enemyRigidbody)
+    {
+        yield return new WaitForSeconds(.18f);
+        if(enemyRigidbody != null)
+            enemyRigidbody.velocity = Vector3.zero;
     }
 
     private void OnTriggerEnter(Collider other)
