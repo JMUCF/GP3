@@ -14,12 +14,18 @@ public class NarrationTest2 : MonoBehaviour
     private bool audioPlayed = false; // Flag to track if the pre-text audio clip has been played
     private bool audioTriggered = false; // Flag to track if the audio has been triggered for the current collider
     private bool activated = false; // Flag to track whether this collider trigger has been activated before
+    private saveState saveStateScript;
+
+    public void Start()
+    {
+        saveStateScript = GameObject.Find("LevelSaveState").GetComponent<saveState>();
+    }
 
     // OnTriggerEnter is called when the Collider other enters the trigger
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collider belongs to the player and if this collider trigger has not been activated before
-        if (other.CompareTag("Player") && !activated)
+        if (other.CompareTag("Player") && !activated  && !saveStateScript.levelOnePass)
         {
             // Mark this collider trigger as activated
             activated = true;
