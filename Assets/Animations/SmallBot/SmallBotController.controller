@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isChasing
+    m_ConditionEvent: isWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1327197696524319583}
@@ -61,12 +61,12 @@ AnimatorController:
   m_Name: SmallBotController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: isChasing
+  - m_Name: isWalking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_DefaultBool: 1
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -94,7 +94,7 @@ AnimatorStateMachine:
     m_Position: {x: 330, y: 150, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1327197696524319583}
-    m_Position: {x: 320, y: 240, z: 0}
+    m_Position: {x: 330, y: 240, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -114,7 +114,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isChasing
+    m_ConditionEvent: isWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6953760137148669248}
