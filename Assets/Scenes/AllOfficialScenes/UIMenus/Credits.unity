@@ -1346,7 +1346,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- 2D Artist.
+  m_text: '- 2D/3D Artist.
 
 
     - UI Art Designer.

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NarrationTest2 : MonoBehaviour
 {
@@ -24,10 +25,16 @@ public class NarrationTest2 : MonoBehaviour
     // OnTriggerEnter is called when the Collider other enters the trigger
     private void OnTriggerEnter(Collider other)
     {
+        Scene scene = SceneManager.GetActiveScene();
         // Check if the collider belongs to the player and if this collider trigger has not been activated before
         if (other.CompareTag("Player") && !activated  && !saveStateScript.levelOnePass)
         {
             // Start the dialogue
+            StartCoroutine(PlayAudioAndShowNextText());
+        }
+
+        else if(other.CompareTag("Player") && !activated && scene.name == "Observatory")
+        {
             StartCoroutine(PlayAudioAndShowNextText());
         }
     }
