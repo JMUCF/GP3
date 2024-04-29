@@ -27,9 +27,6 @@ public class NarrationTest2 : MonoBehaviour
         // Check if the collider belongs to the player and if this collider trigger has not been activated before
         if (other.CompareTag("Player") && !activated  && !saveStateScript.levelOnePass)
         {
-            // Mark this collider trigger as activated
-            activated = true;
-
             // Start the dialogue
             StartCoroutine(PlayAudioAndShowNextText());
         }
@@ -38,70 +35,27 @@ public class NarrationTest2 : MonoBehaviour
     private IEnumerator PlayAudioAndShowNextText()
     {
         // Play the pre-text audio clip with a transition duration if it hasn't been played yet for this collider trigger
-        if (preTextAudioClip != null && audioSource != null && !audioPlayed)
+        if (preTextAudioClip != null && audioSource != null)
         {
             // Start playing the audio clip
             audioSource.PlayOneShot(preTextAudioClip);
-            audioPlayed = true; // Set the flag to indicate that the audio has been played
-            audioTriggered = true; // Set the flag to indicate that the audio has been triggered for this collider
 
             // Wait for the transition duration before showing the first text
             yield return new WaitForSeconds(audioTransitionDuration);
         }
 
-        // Show the first text after playing the audio clip or without it
-        ShowNextText();
-    }
-
-    private void ShowNextText()
-    {
-        // Increment the index
-        currentIndex++;
-
-        // Activate the next text element with a delay
-        StartCoroutine(ActivateTextWithDelay());
-
-        // Wait for the specified text duration
-        StartCoroutine(DeactivateTextAfterDuration());
-    }
-
-    private IEnumerator ActivateTextWithDelay()
-    {
-        // Wait for the specified delay before activating the text
-        yield return new WaitForSeconds(textDelays[currentIndex]);
-
-        // Activate the next text element
-        if (currentIndex < texts.Length)
+        // Show the text elements
+        for (int i = 0; i < texts.Length; i++)
         {
-            texts[currentIndex].SetActive(true);
-        }
-    }
+            // Activate the text element with a delay
+            yield return new WaitForSeconds(textDelays[i]);
+            texts[i].SetActive(true);
 
-    private IEnumerator DeactivateTextAfterDuration()
-    {
-        // Wait for the specified text duration
-        yield return new WaitForSeconds(textDurations[currentIndex]);
+            // Wait for the specified text duration
+            yield return new WaitForSeconds(textDurations[i]);
 
-        // Deactivate the current text element
-        if (currentIndex < texts.Length)
-        {
-            texts[currentIndex].SetActive(false);
-        }
-
-        // Check if this is the last text element
-        if (currentIndex < texts.Length - 1)
-        {
-            // Automatically transition to the next text after the text duration
-            yield return new WaitForSeconds(audioTransitionDuration); // Wait for the transition duration
-            ShowNextText();
-        }
-        else
-        {
-            // Reset flags and static variable when the sequence is finished
-            audioPlayed = false;
-            audioTriggered = false;
-            currentIndex = -1;
+            // Deactivate the text element
+            texts[i].SetActive(false);
         }
     }
 }
-
