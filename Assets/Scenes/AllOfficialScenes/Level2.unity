@@ -20553,6 +20553,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrateMechanical (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6898852560170520395, guid: 46ad649fa041f9c4f8605da7400ef1e1, type: 3}
+      propertyPath: m_Mass
+      value: 1.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21356,7 +21360,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784436887}
-  m_LocalRotation: {x: 0.51950556, y: -0.000000016437651, z: 0.000000009993891, w: 0.8544671}
+  m_LocalRotation: {x: 0.51950556, y: 0.000000016437655, z: -0.000000009993892, w: 0.8544671}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -34136,7 +34140,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502969522}
-  m_LocalRotation: {x: 0.49945852, y: 0.000000014906535, z: -0.0000000085938705, w: 0.86633784}
+  m_LocalRotation: {x: 0.49945852, y: -0.000000014906545, z: 0.000000008593877, w: 0.86633784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

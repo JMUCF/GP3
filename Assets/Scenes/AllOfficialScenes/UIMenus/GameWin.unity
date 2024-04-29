@@ -254,10 +254,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 206392802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29cbcfa9ba7cfeb49bd52d3ccc96ed64, type: 3}
+  m_Script: {fileID: 11500000, guid: 0121156305adf4e45afd0f36ba874191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchToHubButton: {fileID: 206392805}
+  switchSceneButton: {fileID: 206392805}
 --- !u!1 &273001379
 GameObject:
   m_ObjectHideFlags: 0
