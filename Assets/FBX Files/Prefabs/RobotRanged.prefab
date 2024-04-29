@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3384088190292412491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 13.14, y: 6.91, z: 78.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -149,7 +149,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c915f8f6924a90b4fa5cfa57271f3221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  laser: {fileID: 0}
+  shootPoint: {fileID: 0}
+  viewRadius: 0
+  viewAngle: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  visibleTarget: []
+  shootingAudioSource: {fileID: 0}
 --- !u!4 &5614960037749915898 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4bbf657a05122a34f885f8039de89f83, type: 3}

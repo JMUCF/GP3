@@ -30,6 +30,7 @@ public class NarrationTest2 : MonoBehaviour
         if (other.CompareTag("Player") && !activated  && !saveStateScript.levelOnePass)
         {
             // Start the dialogue
+            activated = true;
             StartCoroutine(PlayAudioAndShowNextText());
         }
 

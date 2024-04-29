@@ -22,6 +22,7 @@ public class Elevator : MonoBehaviour
             if (saveStateScript.inALevel && saveStateScript.telekinesis.leverFlipped)
             {
                 saveStateScript.inALevel = false;
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene("GameWin");
             }
             else if (!saveStateScript.levelOnePass)

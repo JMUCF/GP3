@@ -24,10 +24,11 @@ public class Telekinesis : MonoBehaviour
     private float knockbackForce = 0f;
 
     public bool leverFlipped = false;
+    private GameManager gameManager;
 
     void Awake()
     {
-       
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         liftWeight = 1;
         controls = new PlayerControls();
         controls.Player.Interact.performed += ctx => OnInteract();
@@ -84,6 +85,8 @@ public class Telekinesis : MonoBehaviour
     {
         if(objectToPickup.CompareTag("lever"))
         {
+            objectToPickup.transform.rotation = Quaternion.Euler(180, 0, 0);
+
             leverFlipped = true;
             return;
         }
@@ -109,7 +112,7 @@ public class Telekinesis : MonoBehaviour
         Vector3 shootDirection = playerCamera.forward; // Calculate direction from player camera
         form = gameObject.GetComponent<Player>().form;
 
-        if(!form)
+        if(!form && !gameManager.GameIsPaused)
         {
             GameObject laserInst = Instantiate(laser, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
             laserInst.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, 0, 1100f));
@@ -123,7 +126,7 @@ public class Telekinesis : MonoBehaviour
             StartCoroutine(StopShootingAfterDelay());
         }
 
-        else if(form)
+        else if(form && !gameManager.GameIsPaused)
         {
             GameObject hitBoxInst = Instantiate(hitBox, new Vector3(shootPoint.position.x, shootPoint.position.y, shootPoint.position.z), Quaternion.LookRotation(shootDirection));
 
