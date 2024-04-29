@@ -30,11 +30,20 @@ public class GroundEnemy : MonoBehaviour
 
         animator = GetComponent<Animator>();
         animator.SetBool("isWalking", true);
+        animator.SetBool("isAttacking", false);
     }
 
     // Update is called once per frame
     void Update()
     {
+         if (!animator.GetBool("isAttacking")) // Check if not attacking
+        {   
+            animator.SetBool("isWalking", true); // Set isWalking to true only if not attacking
+        }
+        else
+        {
+            animator.SetBool("isWalking", false); // Set isWalking to false if attacking
+        }
 
         if (fov.visibleTarget.Count > 0)
             navMeshAgent.SetDestination(target.transform.position);
@@ -61,7 +70,7 @@ public class GroundEnemy : MonoBehaviour
         {
             healthBar = collision.gameObject.GetComponent<HealthBar>();
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-
+            
             if(enemyRigidbody != null)
             {
                 healthBar.TakeDamage(10);
@@ -69,6 +78,8 @@ public class GroundEnemy : MonoBehaviour
                 enemyRigidbody.AddForce(transform.up * (knockbackForce/2));
                 enemyRigidbody.AddForce(transform.forward * knockbackForce);
                 StartCoroutine(RemoveKnockback(enemyRigidbody));
+                animator.SetBool("isAttacking", true);
+                animator.SetBool("isWalking", false);
             }
             Debug.Log("boss has collided");
         }
