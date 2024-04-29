@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Telekinesis : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class Telekinesis : MonoBehaviour
 
     public bool leverFlipped = false;
     private GameManager gameManager;
+    
 
     void Awake()
     {
@@ -85,7 +87,14 @@ public class Telekinesis : MonoBehaviour
     {
         if(objectToPickup.CompareTag("lever"))
         {
-            objectToPickup.transform.rotation = Quaternion.Euler(180, 0, 0);
+            Scene scene = SceneManager.GetActiveScene();
+
+            if (scene.name == "EngineRoom")
+                objectToPickup.transform.rotation = Quaternion.Euler(180, 0, 0);
+            else if (scene.name == "Level2")
+                objectToPickup.transform.rotation = Quaternion.Euler(0, 0, 180);
+            else if (scene.name == "Observatory")
+                objectToPickup.transform.rotation = Quaternion.Euler(0, -75, 180); //mmmm I love hardcoding
 
             leverFlipped = true;
             return;

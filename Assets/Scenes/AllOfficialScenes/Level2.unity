@@ -2439,14 +2439,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148180547}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.92, y: 6.3, z: -98.62}
+  m_LocalRotation: {x: -0, y: -0.2783196, z: -0, w: 0.96048856}
+  m_LocalPosition: {x: 12.69, y: 6.3, z: -99.97}
   m_LocalScale: {x: 8.986348, y: 7.766268, z: 4.0676093}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1049262196}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -32.32, z: 0}
 --- !u!82 &148180549
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6712,7 +6712,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   visibleTarget: []
-  shootingAudioSource: {fileID: 0}
+  shootingAudioSource: {fileID: 349208897}
 --- !u!23 &349208900
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8136,8 +8136,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416090907}
-  m_LocalRotation: {x: 0.51950556, y: -0.00000003287531, z: 0.000000019987787, w: 0.8544671}
-  m_LocalPosition: {x: 16.419205, y: 9.743499, z: -105.7169}
+  m_LocalRotation: {x: 0.51950556, y: 0.000000032875306, z: -0.000000019987786, w: 0.8544671}
+  m_LocalPosition: {x: 16.039206, y: 9.743499, z: -104.2599}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8659,7 +8659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae95611a1f83ef846ba613e743c81d54, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.9
+      value: 14.52
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae95611a1f83ef846ba613e743c81d54, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8667,7 +8667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae95611a1f83ef846ba613e743c81d54, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -104.32
+      value: -102.863
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae95611a1f83ef846ba613e743c81d54, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19778,7 +19778,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   visibleTarget: []
-  shootingAudioSource: {fileID: 0}
+  shootingAudioSource: {fileID: 703590052}
 --- !u!23 &703590055
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20212,7 +20212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728622384}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -28.403343, y: 1.6223464, z: -34.155388}
+  m_LocalPosition: {x: 0, y: 0, z: -0.75}
   m_LocalScale: {x: 0.6550842, y: 0.65508425, z: 0.6550842}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21346,7 +21346,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784436887}
-  m_LocalRotation: {x: 0.51950556, y: -0.0000000181846, z: 0.000000011056016, w: 0.8544671}
+  m_LocalRotation: {x: 0.51950556, y: 0.000000016437651, z: -0.000000009993891, w: 0.8544671}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22891,7 +22891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833798659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.419205, y: 13.048807, z: -107.32}
+  m_LocalPosition: {x: 16.039206, y: 13.048807, z: -105.863}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -30011,6 +30011,10 @@ PrefabInstance:
       value: RobotRanged (12)
       objectReference: {fileID: 0}
     - target: {fileID: 5614960037749915898, guid: e614a8be3e344674e9185c1653d6b509, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.992
+      objectReference: {fileID: 0}
+    - target: {fileID: 5614960037749915898, guid: e614a8be3e344674e9185c1653d6b509, type: 3}
       propertyPath: m_LocalPosition.z
       value: 16.705
       objectReference: {fileID: 0}
@@ -34169,7 +34173,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502969522}
-  m_LocalRotation: {x: 0.49945852, y: -0.000000014906535, z: 0.0000000085938705, w: 0.86633784}
+  m_LocalRotation: {x: 0.49945852, y: 0.000000014906542, z: -0.000000008593874, w: 0.86633784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -41457,7 +41461,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   visibleTarget: []
-  shootingAudioSource: {fileID: 0}
+  shootingAudioSource: {fileID: 1853316025}
 --- !u!23 &1853316028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45849,7 +45853,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106013615}
-  m_LocalRotation: {x: 0.51950556, y: -0.000000016437657, z: 0.000000009993895, w: 0.8544671}
+  m_LocalRotation: {x: 0.51950556, y: 0.000000016437651, z: -0.000000009993891, w: 0.8544671}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

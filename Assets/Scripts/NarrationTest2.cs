@@ -36,6 +36,7 @@ public class NarrationTest2 : MonoBehaviour
 
         else if(other.CompareTag("Player") && !activated && scene.name == "Observatory")
         {
+            activated = true;
             StartCoroutine(PlayAudioAndShowNextText());
         }
     }
