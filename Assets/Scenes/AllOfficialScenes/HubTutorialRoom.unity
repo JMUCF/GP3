@@ -1413,7 +1413,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108482163}
-  m_LocalRotation: {x: 0.5057713, y: 0.000000014843391, z: -0.000000008702496, w: 0.8626676}
+  m_LocalRotation: {x: 0.5057713, y: -0.000000014843391, z: 0.000000008702496, w: 0.8626676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1508,7 +1508,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4dd2c5611d6965246975273190d1268d, type: 2}
     - target: {fileID: 3426913982976084659, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
       propertyPath: m_Name
-      value: Elevator 1
+      value: Elevator1Hub
       objectReference: {fileID: 0}
     - target: {fileID: 3426913982976084659, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
       propertyPath: m_IsActive
@@ -7764,7 +7764,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4dd2c5611d6965246975273190d1268d, type: 2}
     - target: {fileID: 3426913982976084659, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
       propertyPath: m_Name
-      value: Elevator 3
+      value: Elevator2Hub
       objectReference: {fileID: 0}
     - target: {fileID: 3426913982976084659, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
       propertyPath: m_IsActive
@@ -7790,6 +7790,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4dd2c5611d6965246975273190d1268d, type: 2}
+    - target: {fileID: 5865641997682957236, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
+      propertyPath: m_Name
+      value: Elevator2Hub
+      objectReference: {fileID: 0}
     - target: {fileID: 5865641997682957236, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -9648,7 +9652,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619430334}
-  m_LocalRotation: {x: 0.5257311, y: 0.000000014636621, z: -0.000000009045928, w: 0.85065085}
+  m_LocalRotation: {x: 0.5257311, y: -0.000000014636621, z: 0.000000009045928, w: 0.85065085}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9860,7 +9864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae95611a1f83ef846ba613e743c81d54, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.97
+      value: -27.74
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae95611a1f83ef846ba613e743c81d54, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9868,7 +9872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae95611a1f83ef846ba613e743c81d54, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.6
+      value: 60.14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae95611a1f83ef846ba613e743c81d54, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11695,7 +11699,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4dd2c5611d6965246975273190d1268d, type: 2}
     - target: {fileID: 3426913982976084659, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
       propertyPath: m_Name
-      value: Elevator 2
+      value: Elevator3Hub
       objectReference: {fileID: 0}
     - target: {fileID: 3426913982976084659, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
       propertyPath: m_IsActive
@@ -11725,6 +11729,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4dd2c5611d6965246975273190d1268d, type: 2}
+    - target: {fileID: 5865641997682957236, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
+      propertyPath: m_Name
+      value: Elevator3Hub
+      objectReference: {fileID: 0}
     - target: {fileID: 5865641997682957236, guid: 79a43a5d6520e0e44a53354498457646, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -18216,8 +18224,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1215192583}
-  m_LocalRotation: {x: 0.52573115, y: 0.000000029273243, z: -0.00000001809186, w: 0.85065085}
-  m_LocalPosition: {x: 0.45079517, y: 6.919934, z: 6.6000004}
+  m_LocalRotation: {x: 0.52573115, y: -0.000000029273243, z: 0.00000001809186, w: 0.85065085}
+  m_LocalPosition: {x: -29.259205, y: 6.919934, z: 57.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19014,7 +19022,7 @@ GameObject:
   - component: {fileID: 1286988223}
   - component: {fileID: 1286988222}
   m_Layer: 0
-  m_Name: TriggerZone
+  m_Name: Elevator2Hub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22891,7 +22899,7 @@ GameObject:
   - component: {fileID: 1581527723}
   - component: {fileID: 1581527722}
   m_Layer: 0
-  m_Name: TriggerZone
+  m_Name: Elevator3Hub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29430,7 +29438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672143448}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.45079517, y: 6.919934, z: 6.6000004}
+  m_LocalPosition: {x: -29.259205, y: 6.919934, z: 57.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
